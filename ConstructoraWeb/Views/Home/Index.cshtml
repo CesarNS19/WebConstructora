@@ -1,0 +1,24 @@
+﻿@{
+  ViewData["Title"] = "Página Principal";
+  var hora = DateTime.Now.Hour;
+  string saludo;
+
+  if (hora >= 5 && hora < 12)
+  {
+    saludo = "Buenos días";
+  }
+  else if (hora >= 12 && hora < 19)
+  {
+    saludo = "Buenas tardes";
+  }
+  else
+  {
+    saludo = "Buenas noches";
+  }
+}
+
+<div class="card">
+  <div class="card-body"><b>@saludo </b>@ViewBag.UserName</div>
+</div>
+<br>
+

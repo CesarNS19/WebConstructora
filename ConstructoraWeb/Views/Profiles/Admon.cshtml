@@ -1,0 +1,518 @@
+@{
+    ViewData["Title"] = "Profiles";
+}
+@section css{
+
+}
+
+<div id="Alert">
+</div>
+
+<div class="card">
+  <div class="card-body d-flex justify-content-between">
+    <div>
+      <span class="fw-bold text-primary">Acciones para los perfiles</span>
+
+      <span class="mx-1 mx-sm-2 text-300">|</span>
+
+      <button class="btn btn-success btn-sm " type="button" id="btnProfiles"
+        data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Perfiles" data-bs-original-title="Agregar Perfil">
+        Agregar
+        <i class="fas fa-plus fa-w-16"></i>
+      </button>
+      
+     
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive scrollbar">
+            <table class="table table-sm  table-hover fs-10 mb-0 overflow-hidden" style="width:100%" id="tmainProfiles">
+                <thead class="bg-200">
+                    <tr>
+                        <th class="text-900">Descripción</th>
+                        <th class="text-900">Estatus</th>
+                        <th class="text-900">Fecha</th>
+                        <th class="text-center text-900">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--modal para los perfiles-->
+<div class="modal fade" tabindex="-1" id="modalProfiles"  data-bs-backdrop="static" data-bs-keyboard="false"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Perfiles</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txtDescriptionP">Descripción <span class="Required">*</span></label>
+                    <input type="hidden" id="_id_profiles_" value="0" />
+                    <input type="text" id="txtDescriptionP" class="form-control" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnSaveProfiles">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal con tabla para seleccionar permisos-->
+<div class="modal fade" tabindex="-1" id="modalPermisos" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar Permisos al Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="card shadow-none">
+                    
+                    <div class="card-body px-0 pt-0">
+                        <table id="tmainPermisos" class="table table-sm mb-0 overflow-hidden data-table fs-10"
+                            data-datatables='{"responsive":false,"pagingType":"simple","lengthChange":false,"searching":false,"pageLength":8,"language":{"info":"_START_ to _END_ Items of _TOTAL_"}}'>
+                            <thead class="bg-200">
+                                <tr>
+                                    <th class="text-900  white-space-nowrap">
+                                        
+                                    </th>
+                                    <th class="text-900 pe-5  white-space-nowrap">Modulo</th>
+                                    <th class="text-900 pe-1 align-middle white-space-nowrap">Submodulo</th>
+                                    <th class="text-900 pe-1 align-middle white-space-nowrap">URL</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody class="list" id="table-simple-pagination-body">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered col-sm-6">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">¿Estás seguro de que deseas eliminar este elemento?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmButton">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section JS {
+    <script>
+
+        cargarProfile();
+        cargarPermisos();
+        $("#btnProfiles").click(function () {
+            LimpiarFormularioProfiles();
+            $("#modalProfiles").modal("show");
+        });
+
+        
+        $("#btnSaveProfiles").click(function () {
+            const dateValue = $("#txtRDateP").val();
+            const data_profile = {
+                ProfileID: $("#_id_profiles_").val() || 0,
+                ProDescription: $("#txtDescriptionP").val(),
+                ProRDate: ""
+            };
+
+            $.ajax({
+                url: "/Profiles/AddUpdate",
+                data: data_profile,
+                type: "POST",
+                success: function (res) {
+                    if (res.ok) {
+                       mostrarToast("Exito", res.message, "success");
+                        cargarProfile();
+                        $("#modalProfiles").modal("hide");
+                        LimpiarFormularioProfiles();
+                    } else {
+                        mostrarToast("ALERTA!!", res.message, "warning");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                }
+            });
+        });
+
+        function cargarProfile() {
+            $.ajax({
+                url: "/Profiles/List",
+                type: "POST",
+                
+                success: function (res) {
+                    if (res.ok) {
+                        LlenarTablaP(res.data);
+                        
+                    } else {
+                        mostrarToast("Error", res.message, "error");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                }
+            });
+        }
+        function cargarPermisos(profileID) {
+            $.ajax({
+                url: "/SubModule/ListPermission",
+                type: "POST",
+                data: { auxID: profileID }, // Enviar solo auxID
+                success: function (res) {
+                    if (res.ok) {
+                        LlenarTablaPermisos(res.data);
+                        console.table(res.data);
+                    } else {
+                        mostrarToast("Error en Permisos, ", res.message, "error");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                }
+            });
+        }
+    
+
+        function LlenarTablaPermisos(listas) {
+            if ($.fn.DataTable.isDataTable("#tmainPermisos")) {
+                $("#tmainPermisos").DataTable().destroy();
+            }
+            $("#tmainPermisos tbody").empty();
+
+            tabla = $("#tmainPermisos").DataTable({
+                data: listas,
+                "emptyTable": "Sin historial",
+                columnDefs: [
+                    {
+                        orderable: false,
+                        targets: 0, 
+                        sortable: false
+
+                    }
+                ],
+                columns: [
+                    { data: "perStatus",
+                    render: function (value, type, row) {
+                            return `<td class="align-middle" style="width: 28px;">
+            <div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="simple-pagination-item-0" data-bulk-select-row="data-bulk-select-row" data-permissionid="${row.permissionID}" ${value === 'Activo' ? 'checked' : ''} data-submoduleid="${row.subModuleID}"/></div>
+          </td>`;
+                    },
+                    },
+                    { data: "moDescription", title: "Modulo" },
+                    { data: "subDescription", title: "Submodulo" },
+                    { data: "moController", title: "URL" }
+                    
+                ],
+                language: lang_mx
+            });   
+        }
+
+        function asignarPermisos(profileID) {
+            var permissionIDs = [];
+            var submoduleIDs = [];
+            console.log(profileID);   
+            // Obtener los IDs de permisos seleccionados
+            $("#tmainPermisos input[type='checkbox']:checked").each(function () {
+                var permissionID = $(this).attr('data-permissionid');
+                permissionIDs.push(permissionID);
+                var submoduleID = $(this).attr('data-submoduleid');
+                submoduleIDs.push(submoduleID);
+            });
+            console.log(permissionIDs);
+            console.log(submoduleIDs);
+            // Realizar la llamada AJAX para asignar permisos
+            $.ajax({
+                url: '/Permission/AssignPermission', // Endpoint para asignar permisos
+                type: "POST",
+                data: {
+                    profileID: profileID,
+                    submodulesIDs: submoduleIDs,
+                    permissionIDs: permissionIDs
+                },
+                success: function (res) {
+                    if (res.ok) {
+                        mostrarToast("Éxito", "Permisos asignados correctamente", "success");
+                        cargarModulosFromPermissionOnMenu();
+                        $('#modalPermisos').modal('hide');
+                    } else {
+                        mostrarToast("Error", res.message, "error");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                }
+            });
+        }
+
+        function LlenarTablaP(lista) {
+            if ($.fn.DataTable.isDataTable("#tmainProfiles")) {
+                $("#tmainProfiles").DataTable().destroy();
+            }
+
+            $("#tmainProfiles tbody").remove();
+
+            tabla = $("#tmainProfiles").DataTable({
+                data: lista,
+                "emptyTable": "Sin historial",
+                columnDefs: [
+                    {
+                        orderable: false,
+                        targets: 3,
+                        sortable: false
+                    }
+                ],
+                columns: [
+                    { data: "proDescription" },
+                    {
+                        data: "proStatus",
+                        render: function (data) {
+                            if (data === "Activo") {
+                                return `<span class="badge badge rounded-pill badge-subtle-success">Activo<span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>`;
+                            } else if (data === "Inactivo") {
+                                return `<span class="badge badge rounded-pill badge-subtle-warning">Inactivo<span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span></span>`;
+                            }
+                        }
+                    },
+                    {
+                        data: "proRDate",
+                        render: function (data) {
+                            if (data) {
+                                let timestampMatch = data.match(/\/Date\((\d+)\)\//);
+                                if (timestampMatch) {
+                                    let timestamp = parseInt(timestampMatch[1], 10);
+                                    let date = new Date(timestamp);
+                                    return date.toLocaleString('es-ES', {
+                                        year: 'numeric', month: '2-digit', day: '2-digit',
+                                        hour: '2-digit', minute: '2-digit', second: '2-digit',
+                                        hour12: false
+                                    });
+                                } else {
+                                    let date = new Date(data);
+                                    if (isNaN(date.getTime())) {
+                                        let parts = data.split(/[-T:.Z]/);
+                                        date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2], parts[3] || 0, parts[4] || 0, parts[5] || 0));
+                                    }
+                                    return !isNaN(date.getTime()) ? date.toLocaleString('es-ES', {
+                                        year: 'numeric', month: '2-digit', day: '2-digit',
+                                        hour: '2-digit', minute: '2-digit', second: '2-digit',
+                                        hour12: false
+                                    }) : 'Fecha inválida';
+                                }
+                            } else {
+                                return '';
+                            }
+                        }
+                    },
+                    {
+                        data: "profileID",
+                        render: (value, type, row) => {
+                            let status = '';
+                            let statusIcon = '';
+                            if (row.proStatus === "Activo") {
+                                status = `<a class="dropdown-item text-warning" onclick="HandleStatusProfiles(${row.profileID}, 'Deactivate');" href="#!"><i class="fas fa-toggle-off me-2"></i>Desactivar</a>`;
+                            } else if (row.proStatus === "Inactivo") {
+                                status = `<a class="dropdown-item text-success" onclick="HandleStatusProfiles(${row.profileID}, 'Activate');" href="#!"><i class="fas fa-toggle-on me-2"></i>Activar</a>`;
+                            }
+
+                            return `
+                     <div class="dropdown font-sans-serif position-static text-end">
+                         <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false">
+                             <span class="fas fa-ellipsis-h fs-10"></span>
+                         </button>
+                         <div class="dropdown-menu dropdown-menu-end border py-0">
+                             <div class="py-2">
+                                 <a class="dropdown-item" onclick="ShowModalProfileEdit(${value});" href="#"><i class="fas fa-edit me-2"></i>Editar</a>
+                                 ${status}
+                                 <a class="dropdown-item text-info" onclick="ShowModalPermission(${row.profileID});"><i class="fas fa-key me-2"></i>Permisos</a>
+                                 <a class="dropdown-item text-danger" onclick="DeleteProfile(${value});" href="#"><i class="fas fa-trash-alt me-2"></i>Eliminar</a>
+                             </div>
+                         </div>
+                     </div>
+                      `;
+                        }
+                    }
+                ],
+                language: lang_mx
+            });
+        }
+
+        function ShowModalProfileEdit(profileID) {
+            const data_profile_id = {
+                profileID: profileID
+            };
+
+            $.ajax({
+                url: "/Profiles/List",
+                data: data_profile_id,
+                type: "POST",
+                success: function (res) {
+                    if (res.ok && res.data.length > 0) {
+                        const profile = res.data[0];
+                        $("#_id_profiles_").val(profile.profileID);
+                        $("#txtDescriptionP").val(profile.proDescription);
+                        $("#modalProfiles").modal("show");
+                    } else {
+                        alert("No se encontraron datos para el perfil seleccionado.");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error interno, por favor inténtalo más tarde.");
+                }
+            });
+        }
+
+        function ShowModalPermission(profileID) {
+            cargarPermisos(profileID);
+
+            $('#modalPermisos').modal('show');
+            console.log(profileID);
+            $('#modalPermisos .btn-primary').off().on('click', function () {
+                asignarPermisos(profileID);
+                $('#modalPermisos').modal('hide');
+                
+            });
+        }
+
+        function LimpiarFormularioProfiles() {
+            $("#_id_profiles_").val(0);
+            $("#txtDescriptionP").val("");
+        }
+
+        function HandleStatusProfiles(profileID, action) {
+            const profiles = {
+                ProfileID: profileID,
+                Action: action
+            };
+            console.log(profiles);
+            $.ajax({
+                url: "/Profiles/HandleStatus",
+                type: "POST",
+                data: profiles,
+                beforeSend: function () {
+                },
+                success: function (response) {
+                    if (response.ok) {
+                        mostrarToast("Éxito", response.message, "success");
+                        cargarProfile();
+                    } else {
+                        mostrarToast("Error", response.message, "error");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                }
+            });
+        }
+
+        function DeleteProfile(profileID) {
+            showConfirmModal("¿Estás seguro de que deseas eliminar este perfil?", function () {
+                const profiles = {
+                    ProfileID: profileID,
+                };
+                $.ajax({
+                    url: "/Profiles/DeleteProfile",
+                    type: "POST",
+                    data: profiles,
+                    beforeSend: function () {
+                    },
+                    success: function (response) {
+                        if (response.ok) {
+                            mostrarToast("Éxito", response.message, "success");
+                            cargarProfile();
+                        } else {
+                            mostrarToast("Error", response.message, "error");
+                        }
+                    },
+                    error: function () {
+                        alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                    }
+                });
+            });
+        }
+        
+        function showConfirmModal(message, confirmCallback) {
+            $('#confirmMessage').text(message);
+            $('#confirmButton').off('click').on('click', function() {
+                confirmCallback();
+                $('#confirmModal').modal('hide');
+            });
+            $('#confirmModal').modal('show');
+        }
+
+        function mostrarToast(titulo, mensaje, tipo) {
+            let icon = '';
+            let alertClass = '';
+
+            switch (tipo) {
+                case 'success':
+                    icon = '<span class="fas fa-check-circle text-white fs-6"></span>';
+                    alertClass = 'alert-success';
+                    break;
+                case 'error':
+                    icon = '<span class="fas fa-times-circle text-white fs-6"></span>';
+                    alertClass = 'alert-danger';
+                    break;
+                case 'warning':
+                    icon = '<span class="fas fa-exclamation-circle text-white fs-6"></span>';
+                    alertClass = 'alert-warning';
+                    break;
+                case 'info':
+                    icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+                    alertClass = 'alert-info';
+                    break;
+                default:
+                    icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+                    alertClass = 'alert-info';
+                    break;
+            }
+
+            const alert = `
+        <div class="alert ${alertClass} d-flex align-items-center" role="alert">
+            <div class="me-2">${icon}</div>
+            <div>${titulo}: ${mensaje}</div>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+
+            $("#Alert").html(alert);
+
+            setTimeout(() => {
+                $(".alert").alert('close');
+            }, 4000);
+        }
+
+    </script>
+}

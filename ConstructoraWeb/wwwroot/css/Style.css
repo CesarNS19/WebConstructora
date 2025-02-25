@@ -1,0 +1,33 @@
+.error {
+  color: red;
+}
+
+.Required {
+  color: red;
+  font-weight: bold;
+}
+
+.btn-dark-green {
+  background-color: #217346;
+  border-color: #217346;
+  color: white;
+  margin-left: 18px;
+}
+
+.btn-dark-green:hover {
+  background-color: #1e623d;
+  border-color: #1e623d;
+  color: white;
+}
+
+.modal-dialog {
+  max-width: 50%;
+}
+
+.dataTables_wrapper .dataTables_scroll {
+  overflow: auto;
+}
+
+#tmainPermisos {
+  width: 100% !important;
+}

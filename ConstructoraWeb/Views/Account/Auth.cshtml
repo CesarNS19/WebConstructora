@@ -1,0 +1,225 @@
+@{
+  Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión | 3D Truck</title>
+  <link rel="stylesheet" href="~/css/login-style.css?v=1.1">
+  <link href="~/css/theme.min.css" rel="stylesheet" id="style-default">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+</head>
+
+<body >
+  <main class="container-items mt-6" style="width: 600px; margin-left: 450px;">
+    <div class="content-login">
+      <div class="form-signin ">
+        <form id="loginForm" method="post" action="/Auth/Login">
+          <div class="logo">
+            <h1>
+              <span class="fw-bold text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="30" height="30" fill="#777">
+                  <path d="M224 0c17.7 0 32 14.3 32 32v32h64c17.7 0 32 14.3 32 32s-14.3 32-32 32h-66.7c20.3 21.2 34.4 48.4 39.6 78.3C346.6 221 384 278.6 384 336c0 54.2-17.8 106.4-48.6 149.3-4.5 6.2-11.7 9.7-19.4 9.7H68c-7.7 0-14.9-3.6-19.4-9.7C17.8 442.4 0 390.2 0 336c0-57.4 37.4-115 91.1-161.7 5.2-29.9 19.3-57.1 39.6-78.3H64c-17.7 0-32-14.3-32-32s14.3-32 32-32h64V32c0-17.7 14.3-32 32-32h64zM192 192c-20.5 0-40.7 5.5-58.4 16.1-17.5 10.5-32.2 25.3-42.7 42.9-10.8 18.1-16.9 39.1-16.9 61 0 37 14.5 72.3 40.6 98.4S155 448 192 448s72.3-14.5 98.4-40.6S320 346 320 309c0-21.9-6.1-42.9-16.9-61-10.5-17.6-25.2-32.4-42.7-42.9C232.7 197.5 212.5 192 192 192zm0-64c-13.3 0-24-10.7-24-24V64h48v40c0 13.3-10.7 24-24 24z"/>
+                </svg>
+                Perfumes
+              </span>
+            </h1>
+          </div>
+          <div class="title">
+            <h1>Bienvenido de nuevo</h1>
+            <p>Inicie sesión con su correo electrónico y contraseña</p>
+          </div>
+          <div id="alertContainer"></div>
+          <div class="form-floating mt-5">
+            <input type="email" class="form-control" id="txtEmail" name="email" placeholder="name@example.com" required>
+            <label class=""  for="txtEmail">Correo electrónico</label>
+          </div>
+          <div class="position-relative">
+            <div class="form-floating">
+              <input type="password" class="form-control" id="txtPassword" name="password" placeholder="Password"
+                required>
+              <label class="" for="txtPassword">Contraseña</label>
+            </div>
+            <div id="capsLockAlert" class="alert alert-warning alert-dismissible fade show caps-lock-alert" role="alert"
+              style="display: none;">
+              <strong>Bloq Mayús está activado</strong>
+            </div>
+          </div>
+
+          <div class="form-check text-start my-3 check">
+            <input class="form-check-input" type="checkbox" id="rememberMe">
+            <label class="form-check-label" for="rememberMe">
+              Recordarme
+            </label>
+          </div>
+          <button id="loginBtn" class="btn btn-primary w-100 py-2 mt-3" type="submit"><span id="btnSessionTittle">Iniciar Sesión</span>
+            <div class="sun-loader" id="sun-loader" styele="display:none;"></div>
+          </button>
+          <div class="d-flex justify-content-center ">
+            <small class="footer-text mt-2 p-2 ">&copy; Power by  | 2024 - @DateTime.Now.ToString("yyyy")</small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  
+
+  <script src="~/js/jquery.min.js"></script>
+  <script src="~/js/popper.min.js"></script>
+  <script src="~/js/bootstrap.min.js"></script>
+
+  <script>
+    
+    function establecerCookie(nombre, valor, dias) {
+      var fecha = new Date();
+      fecha.setTime(fecha.getTime() + (dias * 24 * 60 * 60 * 1000));
+      var expires = "; expires=" + fecha.toUTCString();
+      document.cookie = nombre + "=" + valor + expires + "; path=/";
+    }
+
+    function obtenerCookie(nombre) {
+      var nombreEQ = nombre + "=";
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+          cookie = cookie.substring(1, cookie.length);
+        }
+        if (cookie.indexOf(nombreEQ) === 0) {
+          return cookie.substring(nombreEQ.length, cookie.length);
+        }
+      }
+      return null;
+    }
+
+    function borrarCookie(nombre) {
+      establecerCookie(nombre, "", -1);
+    }
+
+    function mostrarAlerta(mensaje, tipo) {
+      var alertContainer = document.getElementById('alertContainer');
+      if (!alertContainer) {
+        console.error('El contenedor de alertas no se encontró ene l DOM.');
+        return;
+      }
+
+      var existingAlert = alertContainer.querySelector('.alert.alert-' + tipo);
+
+      if (existingAlert) {
+        existingAlert.innerHTML = mensaje
+      } else {
+        var alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-' + tipo + ' alert-dismissible fade show';
+        alertDiv.role = 'alert';
+        alertDiv.innerHTML = mensaje
+        alertContainer.appendChild(alertDiv);
+      }
+    }
+
+    function ocultarAlerta() {
+      var alertContainer = document.getElementById('alertContainer');
+      alertContainer.innerHTML = '';
+    }
+
+    function Login(event) {
+      event.preventDefault();
+
+      var email = document.getElementById("txtEmail").value.trim();
+      var password = document.getElementById("txtPassword").value.trim();
+      var recordarme = document.getElementById("rememberMe").checked;
+      var sunLoader = document.getElementById("sun-loader");
+      if (email === '' || password === '') {
+        mostrarAlerta('Por favor ingresa tu correo electrónico y contraseña.', 'warning');
+        return;
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "/Account/Login",
+        data: {
+          email: email,
+          password: password
+        },
+        success: function (response) {
+  
+          if (response.success) {
+
+            if (recordarme) {
+              establecerCookie("recordarme", email, 30);
+              
+            } else {
+              borrarCookie("recordarme");
+            }
+            window.location.href = response.redirectUrl;
+          } else {
+             $("#btnSessionTittle").show();
+             $("#sun-loader").hide();
+
+            mostrarAlerta(response.message, 'danger');
+          }
+        },
+        error: function () {
+          mostrarAlerta('Ocurrió un error al procesar tu solicitud. Por favor intenta de nuevo más tarde.', 'danger');
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      $("#sun-loader").hide();
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      console.log(currentTheme);
+      document.body.classList.add(currentTheme);
+      document.documentElement.setAttribute('data-bs-theme', currentTheme);
+
+      var capsLockAlert = document.getElementById('capsLockAlert');
+      var passwordField = document.getElementById('txtPassword');
+      var rememberMeCheckbox = document.getElementById('rememberMe');
+      var emailField = document.getElementById('txtEmail');
+
+      passwordField.addEventListener('keyup', function (event) {
+        var capsOn = event.getModifierState && event.getModifierState('CapsLock');
+        capsLockAlert.style.display = capsOn ? 'block' : 'none';
+      });
+
+      passwordField.addEventListener('keydown', function (event) {
+        var capsOn = event.getModifierState && event.getModifierState('CapsLock');
+        capsLockAlert.style.display = capsOn ? 'block' : 'none';
+      });
+
+      emailField.addEventListener('input', function () {
+        ocultarAlerta();
+      });
+
+      passwordField.addEventListener('input', function () {
+        ocultarAlerta();
+      });
+
+      var recordarmeEmail = obtenerCookie("recordarme");
+      if (recordarmeEmail) {
+        document.getElementById("txtEmail").value = recordarmeEmail;
+        rememberMeCheckbox.checked = true;
+      }
+
+      var loginForm = document.getElementById('loginForm');
+      loginForm.addEventListener('submit', function (event) {
+        event.preventDefault(); 
+
+        $("#btnSessionTittle").hide();
+        $("#sun-loader").show();
+
+        setTimeout(() => {
+         
+          Login(event); 
+        }, 2000); 
+      });
+
+    });
+  </script>
+</body>
+
+</html>

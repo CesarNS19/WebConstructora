@@ -1,0 +1,716 @@
+@{
+  ViewData["Title"] = "Account Management";
+}
+
+@section css {
+}
+
+
+<div class="card">
+  <div class="card-body d-flex justify-content-between">
+    <div>
+      <span class="fw-bold text-primary">Acciones para las cuentas</span>
+
+      <span class="mx-1 mx-sm-2 text-300">|</span>
+
+      <button class="btn btn-success btn-sm " type="button" id="AddAccount"
+        data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Account" data-bs-original-title="Agregar Cuenta">
+        Agregar
+        <i class="fas fa-plus fa-w-16"></i>
+      </button>
+      
+      <button
+        class="btn btn-info btn-sm ms-1 ms-sm-2 d-none d-sm-inline-block " type="button" id="exportExcel"
+        data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Export" data-bs-original-title="Exportar a Excel">
+        Exportar
+        <i class="far fa-file-excel fa-w-14"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive scrollbar">
+            <table class="table table-sm  table-hover fs-10 mb-0 overflow-hidden" style="width:100%" id="tmain">
+                <thead class="bg-200">
+          <tr>
+            <th></th>
+            <th class="text-900 sort">Usuario</th>
+            <th class="text-900 sort">Correo</th>
+            <th class="text-900 sort">Descripción</th>
+            <th class="text-900 sort">Estatus</th>
+            <th class="text-900 text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" id="modalFinal" data-bs-backdrop="static" data-bs-keyboard="false"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Datos Personales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3 needs-validation" novalidate id="Form">
+          <div class="col-md-6">
+            <input type="hidden" id="id_account">
+            <label for="validationCustom01" class="form-label">Nombre <span class="Required">*</span></label>
+            <input placeholder="Escribe tu nombre" type="text" class="form-control" name="nombre" id="nombre" value=""
+              required>
+
+          </div>
+          <div class="col-md-6">
+            <label for="validationCustom02" class="form-label">Apellido Paterno <span class="Required">*</span></label>
+            <input placeholder="Escribe tu Apellido Paterno" type="text" class="form-control" name="inicial"
+              id="inicial" value="" required>
+
+          </div>
+          <div class="col-md-6">
+            <label for="validationCustom02" class="form-label">Apellido Materno <span class="Required">*</span></label>
+            <input placeholder="Escribe tu Apellido Materno" type="text" class="form-control" name="apellido"
+              id="apellido" value="" required>
+
+          </div>
+
+          <div class="col-md-6">
+            <label for="validationCustom04" class="form-label">Perfil</label>
+            <select class="form-select" id="ListProfile" required>
+              <option value="-1">Seleccione</option>
+            </select>
+            <div class="invalid-feedback">
+              Selecciona un perfil
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="validationCustom02" class="form-label">Teléfono <span class="Required">*</span></label>
+            <input placeholder="Escribe tu telefono" type="text" class="form-control" name="number" id="number" value=""
+              required>
+
+          </div>
+          <div class="col-md-6">
+            <label for="validationCustom02" class="form-label">Correo <span class="Required">*</span></label>
+            <input placeholder="Escribe tu correo electrónico" type="email" class="form-control" name="email"
+              id="EmailAddress" value="" required>
+          </div>
+          <div class="col-md-6" id="divPass">
+            <label for="validationCustom02" class="form-label">Contraseña <span class="Required">*</span></label>
+            <input placeholder="Escribe tu contraseña" type="password" class="form-control" name="pass" id="pass"
+              value="" required>
+          </div>
+          <div class="modal-footer">
+            <div id="group_btn">
+
+            </div>
+            <button class="btn btn-primary" type="submit" id="SaveAccount">Continue</button>
+
+          </div>
+        </form>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<!--MODAL PARA CAMBIO DE CONTRASEÑA-->
+<div class="modal" tabindex="-1" id="ModalCambio"  data-bs-backdrop="static" data-bs-keyboard="false"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="FormCambio">
+          <div class="form-group" id="information">
+            <input type="hidden" id="id_account" />
+            <label>Contraseña</label>
+            <input type="password" class="form-control" name="passChange" id="passChange" />
+            <label>Validar Contraseña</label>
+            <input type="password" class="form-control" id="passVerify" name="passVerify" />
+          </div>
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <div id="group_btn">
+
+        </div>
+
+        <button type="button" class="btn btn-primary" id="ChangePassword">Continue</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+@section JS {
+
+  <script>
+    $(function () {
+      limpiarFormulario();
+      limpiarFormPass();
+      cargarAccount();
+      $(document).ready(function () {
+        $.validator.addMethod("noNumeric", function (value, element) {
+          return this.optional(element) || !/\d/.test(value);
+        }, "Por favor, no ingrese caracteres numéricos.");
+
+        $("#Form").validate({
+          rules: {
+            nombre: {
+
+              minlength: 3
+            },
+            inicial: {
+              noNumeric: true
+            },
+            apellido: {
+
+              minlength: 3
+            },
+            user: {
+
+              minlength: 3
+            },
+            email: {
+
+              email: true
+            },
+            number: {
+              number: true,
+              minlength: 10,
+              maxlength: 12
+            },
+            pass: {
+              required: true,
+              minlength: 8,
+              maxlength: 16
+            }
+
+          },
+          messages: {
+            nombre: {
+              required: "Por favor, ingrese su nombre.",
+              minlength: "El nombre debe tener al menos 3 caracteres."
+            },
+            inicial: {
+              required: "Por favor, ingrese su inicial.",
+              noNumeric: "Por favor, no ingrese caracteres numéricos."
+            },
+            perfiles: {
+              required: "Por favor, seleccione un perfil.",
+              min: "Por favor, seleccione un perfil válido."
+            },
+            apellido: {
+              required: "Por favor, ingrese su apellido.",
+              minlength: "El apellido debe tener al menos 3 caracteres."
+            },
+            user: {
+              required: "Por favor, ingrese un nombre de usuario.",
+              minlength: "El nombre de usuario debe tener al menos 3 caracteres."
+            },
+            email: {
+              email: "Por favor, ingrese un correo electrónico válido."
+            },
+            number: {
+              number: "Por favor, ingrese un número válido.",
+              minlength: "El número debe tener al menos 10 dígitos.",
+              maxlength: "El número debe tener máximo 12 dígitos."
+            },
+            pass: {
+              required: "Por favor, ingrese una contraseña.",
+              minlength: "La contraseña debe tener al menos 8 caracteres.",
+              maxlength: "La contraseña debe tener máximo 16 caracteres."
+            }
+          }
+        });
+
+      })
+
+      $("#ChangePassword").click(() => {
+        var AccountID = $("#id_account").val();
+        var AcPassword = $("#passChange").val();
+        var PassVerify = $("#passVerify").val();
+        if (PassVerify != AcPassword) {
+          mostrarToast("Atencion", "Las contraseñas no coinciden", "failed");
+          return;
+        }
+        const data_changePassword = {
+
+          AccountID: AccountID,
+          AcPassword: AcPassword
+
+        };
+        console.log(data_changePassword);
+        $.ajax({
+          url: "/Account/ChangePass",
+          data: data_changePassword,
+          type: "POST",
+
+
+          beforeSend: () => {
+          },
+          success: (res) => {
+            if (res.ok) {
+
+              $("#ModalCambio").modal("hide");
+
+              mostrarToast("Exito", res.message, "success");
+              cargarAccount();
+              limpiarFormulario();
+              limpiarFormPass();
+            } else {
+              mostrarToast("Error", res.message, "error");
+            }
+          },
+          error: () => {
+            alert("Ocurrió un error interno, por favor inténtalo más tarde");
+          }
+        });
+
+      });
+
+      $("#AddAccount").click(() => {
+        cargarProfile();
+        limpiarFormulario();
+        console.log("account loaded");
+         const boton = `
+                        
+                      `;
+            $("#group_btn").html(boton);
+        $("#divPass").show();
+        $("#modalFinal").modal("show");
+        
+      });
+      (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            event.preventDefault();
+            if (!form.checkValidity()) {
+              event.stopPropagation();
+              console.log("Error, campos no llenados");
+            } else {
+              const data_account = {
+                accountVM: {
+                  accountID: $("#id_account").val() || 0,
+                  profileID: $("#ListProfile").val(),
+                  AcUser: $("#EmailAddress").val(),
+                  AcEmailAddress: $("#EmailAddress").val(),
+                  acPhoneNumber: $("#number").val(),
+                  acPassword: $("#pass").val(),
+                  acStatus: "Pendiente",
+                  acRDate: "",
+                  peopleID: $("#id_people_").val() || 0,
+                  peFirstName: $("#nombre").val(),
+                  peMiddleInitial: $("#inicial").val(),
+                  peLastName: $("#apellido").val(),
+                  peStatus: "Pendiente",
+                  peRDate: "",
+                  peStreet: "",
+                  peOutsideCode: "",
+                  peInsideCode: "",
+                  settlementID: 0
+                }
+              };
+
+              console.log(data_account);
+
+              $.ajax({
+                url: "/Account/AddUpdate",
+                data: data_account,
+                type: "POST",
+                beforeSend: () => { },
+                success: (res) => {
+                  if (res.ok) {
+                    $("#modalFinal").modal("hide");
+                    console.table(res.data);
+                    mostrarToast("Exito!!", res.message, "success");
+                    cargarAccount();
+                    limpiarFormulario();
+                    resetValidation(form);
+                  } else {
+                    mostrarToast("ALERTA!!", res.message, "warning");
+                  }
+                },
+                error: () => {
+                  alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                }
+              });
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      })();
+
+
+    });
+
+    function cargarProfile() {
+      $.ajax({
+        url: "/Profiles/List",
+        type: "POST",
+
+        beforeSend: () => { },
+        success: (res) => {
+          if (res.ok) {
+            console.table(res.data);
+            let html = `<option value="-1">Seleccione</option>`;
+            $.each(res.data, (index, value) => {
+              html += `<option value="${value.profileID}">${value.proDescription}</option>`;
+            });
+            $("#ListProfile").html(html);
+          } else {
+            mostrarToast("ALERTA!!", res.message, "alert");
+          }
+        },
+        error: () => {
+          alert("Ocurrió un error interno, por favor inténtalo más tarde");
+        }
+      });
+    }
+
+    function cargarAccount() {
+      $.ajax({
+        url: "/Account/List",
+        type: "POST",
+        beforeSend: () => { },
+        success: (res) => {
+          if (res.ok) {
+            console.table(res.data);
+            LlenarTabla(res.data);
+          } else {
+            mostrarToast("ALERTA!!", res.message, "alert");
+          }
+        },
+        error: () => {
+          alert("Ocurrió un error interno, por favor inténtalo más tarde");
+        }
+      });
+    }
+    var tabla;
+    function LlenarTabla(lista) {
+      if ($.fn.DataTable.isDataTable("#tmain")) {
+        $("#tmain").DataTable().destroy();
+      }
+
+      $("#tmain tbody").remove();
+
+      tabla = $("#tmain").DataTable({
+        responsive: true,
+        data: lista,
+        "emptyTable": "Sin historial",
+        columnDefs: [
+                {
+                    orderable: false,
+                    targets: 5, // en la columna 5 el check
+                    sortable: false
+
+                }
+            ],
+
+        columns: [
+          {
+            className: 'dt-control',
+            orderable: false,
+            data: null,
+            defaultContent: ''
+          },
+          { data: 'acUser' },
+          { data: 'acEmailAddress' },
+          { data: 'proDescription' },
+          { data: 'acStatus',
+          render:(value, type, row)=> {
+            if(value == 'Activo'){
+              return `<span class="badge badge rounded-pill badge-subtle-success">${value}<span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>`;
+            }else if (value == 'Pendiente'){
+              return `<span class="badge badge rounded-pill badge-subtle-warning">${value}<span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span></span>`;
+            }
+          } 
+          },
+
+          {data: "accountID",
+            render: (value, type, row) => {
+              let status = '';
+                if(row.acStatus == 'Activo'){
+                    status = `<a class="dropdown-item text-warning" onclick="handleAccountStatus(${row.accountID}, 'Deactivate');"><i class="fas fa-toggle-off me-2"></i>Desactivar</a>`;
+                }else if(row.acStatus == 'Pendiente'){
+                    status = `<a class="dropdown-item text-success" onclick="handleAccountStatus(${row.accountID}, 'Activate');"><i class="fas fa-toggle-on me-2"></i>Activar</a>`;
+                }
+
+              return `
+             <div class="dropdown font-sans-serif position-static text-end"><button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs-10"></span></button>
+                <div class="dropdown-menu dropdown-menu-end border py-0">
+                  <div class="py-2"><a class="dropdown-item" onclick="ShowModalEdit(${value});"><i class="fas fa-edit me-2"></i>Editar</a> ${status}</div>
+                </div>
+              </div>
+              `;
+            }
+          },
+          
+          { title: 'Nombre', data: 'peFirstName', visible: false },
+          { title: 'Inicial', data: 'peMiddleInitial', visible: false },
+          { title: 'Apellido', data: 'peLastName', visible: false },
+          { title: 'Número de Teléfono', data: 'acPhoneNumber', visible: false },
+          { title: 'Fecha de Registro', data: 'acRDate', visible: false }
+        ],
+        order: [[1, 'asc']],
+       language: lang_mx,
+        buttons: ['excel']
+      });
+      $('#tmain tbody').on('click', 'td.dt-control', function (e) {
+        let tr = e.target.closest('tr');
+        let row = tabla.row(tr);
+
+        if (row.child.isShown()) {
+          
+          row.child.hide();
+        }
+        else {
+          
+          row.child(format(row.data())).show();
+        }
+      });
+    }
+    function format(d) {
+      
+      return (
+        '<dl>' +
+        '<dt>Nombre completo</dt>' +
+        '<dd>' +
+        d.peFirstName + ' ' + d.peMiddleInitial + ' ' + d.peLastName +
+        '</dd>' +
+        '<dt>Numero Telefonico:</dt>' +
+        '<dd>' +
+        d.acPhoneNumber +
+        '</dd>' +
+        '<dt>Fecha</dt>' +
+        '<dd>' +
+        d.acRDate +
+        '</dd>' +
+        '<dt>Estatus</dt>' +
+        '<dd>' +
+        d.acStatus +
+        '</dd>' +
+        '</dl>'
+      );
+    }
+
+    $('#exportExcel').click(function() {
+        tabla.button('.buttons-excel').trigger();
+        mostrarToast("Exportar", "Tu tabla se ha exportado correctamente en formato excel", "info");
+    });
+
+    function mostrarToast(titulo, mensaje, tipo) {
+      let icon = '';
+      let alertClass = '';
+
+      switch (tipo) {
+        case 'success':
+          icon = '<span class="fas fa-check-circle text-white fs-6"></span>';
+          alertClass = 'alert-success';
+          break;
+        case 'error':
+          icon = '<span class="fas fa-times-circle text-white fs-6"></span>';
+          alertClass = 'alert-danger';
+          break;
+        case 'warning':
+          icon = '<span class="fas fa-exclamation-circle text-white fs-6"></span>';
+          alertClass = 'alert-warning';
+          break;
+        case 'info':
+          icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+          alertClass = 'alert-info';
+          break;
+        default:
+          icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+          alertClass = 'alert-info';
+          break;
+      }
+
+      const alert = `
+        <div class="alert ${alertClass} d-flex align-items-center" role="alert">
+            <div class="me-2">${icon}</div>
+            <div>${titulo}: ${mensaje}</div>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+
+      $("#Alert").html(alert);
+
+      setTimeout(() => {
+        $(".alert").alert('close');
+      }, 4000);
+    }
+
+    function handleAccountStatus(AccountID, Action) {
+      const data = {
+        AccountID: AccountID,
+        Action: Action
+      };
+
+      $.ajax({
+        url: "/Account/HandleStatus",  
+        type: "POST",
+        data: data,
+        beforeSend: function () {
+        
+        },
+        success: function (response) {
+          if (response.ok) {
+            mostrarToast("Éxito", response.message, "success");
+            cargarAccount();  
+            
+          } else {
+            mostrarToast("Error", response.message, "error");
+          }
+        },
+        error: function () {
+          alert("Ocurrió un error interno, por favor inténtalo más tarde");
+        }
+      });
+    }
+
+
+    function limpiarFormulario() {
+      $("#id_account").val("");
+      $("#id_people_").val("");
+      $("#nombre").val("");
+      $("#inicial").val("");
+      $("#apellido").val("");
+      $("#EmailAddress").val("");
+      $("#user").val("");
+      $("#number").val("");
+      $("#pass").val("");
+
+    }
+    function resetValidation(form) {
+      form.reset();
+      form.classList.remove('was-validated');
+      const fields = form.querySelectorAll('.form-control');
+      fields.forEach(field => {
+        field.classList.remove('is-valid', 'is-invalid');
+      });
+    }
+
+    function ShowModalEdit(accountID) {
+        
+      const data_account_id = {
+        accountVM: {
+          AccountID: accountID
+        }
+      };
+      $.ajax({
+        url: "/Account/List",
+        data: data_account_id,
+        type: "POST",
+        beforeSend: () => { },
+        success: (res) => {
+          if (res.ok) {
+            const account = res.data[0];
+            $("#divPass").hide();
+            $("#pass").prop('required', false);
+            console.log(account);
+            $("#id_account").val(account.accountID);
+            $("#id_people_").val(account.peopleID);
+            $("#nombre").val(account.peFirstName);
+            $("#inicial").val(account.peMiddleInitial);
+            $("#apellido").val(account.peLastName);
+            $("#EmailAddress").val(account.acEmailAddress);
+            $("#number").val(account.acPhoneNumber);
+
+
+            $.ajax({
+              url: "/Profiles/List",
+              type: "POST",
+              beforeSend: () => { },
+              success: (res) => {
+                if (res.ok) {
+                  let html = `<option value="${account.profileID}">${account.proDescription}</option>`;
+                  $.each(res.data, (index, value) => {
+                    if (value.profileID !== account.profileID) {
+                      html += `<option value="${value.profileID}">${value.proDescription}</option>`;
+                    }
+                  });
+                  $("#ListProfile").html(html);
+                } else {
+                  mostrarToast("error", res.message, "warning");
+                }
+              },
+              error: () => {
+                alert("Ocurrió un error interno, por favor inténtalo más tarde");
+              }
+            });
+
+            // Mostrar botón para cambiar contraseña si es necesario
+            const boton = `
+                        <button type="button" onclick="CambiarContraseña(${account.accountID});" class="btn btn-warning">Cambiar contraseña</button>
+                      `;
+            $("#group_btn").html(boton);
+            $("#modalFinal").modal("show");
+          } else {
+            mostrarToast("Error", res.message, "error");
+          }
+        },
+        error: () => {
+          alert("Ocurrió un error interno, por favor inténtalo más tarde");
+        }
+      });
+    }
+
+
+    function CambiarContraseña(id) {
+      const data_account_id = {
+        accountVM: {
+          AccountID: id
+        }
+      };
+      $.ajax({
+        url: "/Account/List",
+        data: data_account_id,
+        type: "POST",
+
+        beforeSend: () => {
+        },
+        success: (res) => {
+          if (res.ok) {
+            $("#modalFinal").modal("hide");
+            const account = res.data[0];
+            console.table(res.data);
+            $("#id_account").val(account.accountID);
+
+
+            $("#ModalCambio").modal("show");
+            console.log(account.accountID);
+            limpiarFormPass();
+          } else {
+            mostrarToast("Error", res.messege, "error");
+          }
+        },
+        error: () => {
+          alert("Ocurrió un error interno, por favor inténtalo más tarde");
+        }
+      });
+    }
+    function limpiarFormPass() {
+      $("#passVerify").val("");
+      $("#passChange").val("");
+    }
+  </script>
+
+
+}
