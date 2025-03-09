@@ -35,6 +35,7 @@ namespace ConstructoraWeb.Controllers
                 return RedirectToAction("Auth", "Account");
             }
     }
+    
     [HttpPost]
     public JsonResult ListModule(ModuleVM moduleVM)
     {

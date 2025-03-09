@@ -4,37 +4,37 @@ using ConstructoraWeb.Models.ViewModels;
 
 namespace ConstructoraWeb.Models.Services;
 
-public class SFMaterialTypeSrv: DBAccess 
+public class SFBrandsSrv: DBAccess 
 {
     private readonly DBAccess cnx;
 
-        public SFMaterialTypeSrv(string connectionString) : base(connectionString)
+        public SFBrandsSrv(string connectionString) : base(connectionString)
         {
             this.cnx = new DBAccess(connectionString);
         }
 
-        public ResponseVM<List<SFMaterialTypeVM>> List(SFMaterialTypeVM sfMaterialTypeVM)
+        public ResponseVM<List<SFBrandsVM>> List(SFBrandsVM sfBrandsVm)
         {
-            ResponseVM<List<SFMaterialTypeVM>> res = new ResponseVM<List<SFMaterialTypeVM>>()
+            ResponseVM<List<SFBrandsVM>> res = new ResponseVM<List<SFBrandsVM>>()
             {
-                Data = new List<SFMaterialTypeVM>()
+                Data = new List<SFBrandsVM>()
             };
 
             try
             {
-                var command = new SqlCommand("SPMaterialType", Open()) { CommandType = CommandType.StoredProcedure };
-                command.Parameters.AddRange(_parameters(sfMaterialTypeVM, sfMaterialTypeVM.TypeMeterialID == 0 ? "SELECT_ALL" : "SELECT_BY_ID"));
+                var command = new SqlCommand("SPBrands", Open()) { CommandType = CommandType.StoredProcedure };
+                command.Parameters.AddRange(_parameters(sfBrandsVm, sfBrandsVm.id_marca == 0 ? "SELECT_ALL" : "SELECT_BY_ID"));
 
                 using (var dr = command.ExecuteReader())
                 {
                     res.HasRow(dr);
                     while (dr.Read())
                     {
-                        res.Data.Add(new SFMaterialTypeVM
+                        res.Data.Add(new SFBrandsVM
                         {
-                            TypeMeterialID = dr.GetInt64(dr.GetOrdinal("TypeMeterialID")),
-                            TypeMeterialName = dr.GetString(dr.GetOrdinal("TypeMeterialName")),
-                            TypeMeterialSTS = dr.GetString(dr.GetOrdinal("TypeMeterialSTS")),
+                            id_marca = dr.GetInt64(dr.GetOrdinal("id_marca")),
+                            nombre_marca = dr.GetString(dr.GetOrdinal("nombre_marca")),
+                            estatus = dr.GetString(dr.GetOrdinal("estatus"))
                         });
                     }
                 }
@@ -50,14 +50,14 @@ public class SFMaterialTypeSrv: DBAccess
             return res;
         }
 
-        public ResponseVM AddUpdate(SFMaterialTypeVM sfMaterialTypeVM)
+        public ResponseVM AddUpdate(SFBrandsVM sfBrandsVm)
         {
             ResponseVM res = new ResponseVM();
 
             try
             {
-                var command = new SqlCommand("SPMaterialType", Open()) { CommandType = CommandType.StoredProcedure };
-                command.Parameters.AddRange(_parameters(sfMaterialTypeVM, sfMaterialTypeVM.TypeMeterialID == 0 ? "ADD" : "UPDATE"));
+                var command = new SqlCommand("SPBrands", Open()) { CommandType = CommandType.StoredProcedure };
+                command.Parameters.AddRange(_parameters(sfBrandsVm, sfBrandsVm.id_marca == 0 ? "ADD" : "UPDATE"));
 
                 using (var dr = command.ExecuteReader())
                 {
@@ -77,19 +77,18 @@ public class SFMaterialTypeSrv: DBAccess
             }
             return res;
         }
-        public ResponseVM HandleStatus(SFMaterialTypeVM sfMaterialTypeVM, string action)
+        public ResponseVM HandleStatus(SFBrandsVM sfBrandsVm, string action)
         {
             ResponseVM res = new ResponseVM();
 
             try
             {
-                var command = new SqlCommand("SPMaterialType", Open()) { CommandType = CommandType.StoredProcedure };
+                var command = new SqlCommand("SPBrands", Open()) { CommandType = CommandType.StoredProcedure };
 
-                // Determinar el caso según la acción (Activate o Deactivate)
                 string caseType = (action == "Activate") ? "ACTIVATE" :
                                   (action == "Deactivate") ? "DEACTIVATE" : "";
 
-                command.Parameters.AddRange(_parameters(sfMaterialTypeVM, caseType));
+                command.Parameters.AddRange(_parameters(sfBrandsVm, caseType));
 
                 using (var dr = command.ExecuteReader())
                 {
@@ -110,13 +109,13 @@ public class SFMaterialTypeSrv: DBAccess
             return res;
         }
 
-        private SqlParameter[] _parameters(SFMaterialTypeVM sfMaterialTypeVM, string action)
+        private SqlParameter[] _parameters(SFBrandsVM sfBrandsVm, string action)
         {
             return new SqlParameter[]
             {
-                new SqlParameter("@TypeMeterialID", sfMaterialTypeVM.TypeMeterialID),
-                new SqlParameter("@TypeMeterialName" , sfMaterialTypeVM.TypeMeterialName),
-                new SqlParameter("@TypeMeterialSTS" , sfMaterialTypeVM.TypeMeterialSTS),
+                new SqlParameter("@id_marca", sfBrandsVm.id_marca),
+                new SqlParameter("@nombre_marca" , sfBrandsVm.nombre_marca),
+                new SqlParameter("@estatus" , sfBrandsVm.estatus),
                 new SqlParameter("@Action", action)
             };
         }

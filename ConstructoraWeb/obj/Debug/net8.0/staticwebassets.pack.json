@@ -45,6 +45,34 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\One million Lucky.jpeg",
+      "PackagePath": "staticwebassets\\img\\One million Lucky.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\alacena.jpg",
+      "PackagePath": "staticwebassets\\img\\alacena.jpg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\cama.jpg",
+      "PackagePath": "staticwebassets\\img\\cama.jpg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\descarga (1).jpeg",
+      "PackagePath": "staticwebassets\\img\\descarga (1).jpeg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\descarga.jpeg",
+      "PackagePath": "staticwebassets\\img\\descarga.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\led.jpeg",
+      "PackagePath": "staticwebassets\\img\\led.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\parfum.avif",
+      "PackagePath": "staticwebassets\\img\\parfum.avif"
+    },
+    {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\js\\all.min.js",
       "PackagePath": "staticwebassets\\js\\all.min.js"
     },

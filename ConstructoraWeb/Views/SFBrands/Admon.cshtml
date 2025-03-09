@@ -1,0 +1,255 @@
+﻿@{
+    ViewData["Title"] = "Marcas";
+}
+
+@section css {
+    <style>
+        .btn-link {
+            position: relative;
+            z-index: 9999;
+        }
+    </style>
+}
+<div id="toastContainer"></div>
+
+<div class="card">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="fw-bold text-primary">Acciones para las Marcas</span>
+
+            <span class="mx-1 mx-sm-2 text-300">|</span>
+
+            <button class="btn btn-primary btn-sm " type="button" id="btnBrands" data-bs-toggle="tooltip"
+                    data-bs-placement="top" aria-label="Marca" data-bs-original-title="Agregar Marca">
+                Marca
+                <i class="fas fa-plus fa-w-16"></i>
+            </button>
+        </div>
+    </div>
+</div><br/>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive scrollbar">
+            <table class="table table-sm  table-hover fs-10 mb-0 overflow-hidden" style="width:100%"
+                id="tmainBrands">
+                <thead class="bg-200">
+                    <tr>
+                        <th class="text-900">Marca</th>
+                        <th class="text-900">Estatus</th>
+                        <th class="text-center text-900">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="modal fade" tabindex="-1" id="modalBrands">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Marca</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label >Nombre de la Marca<span class="Required">*</span></label>
+                    <input type="hidden" id="_id_marca_" value="0" />
+                    <input type="text" id="txtnombre" class="form-control" placeholder="Marca" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnSaveBrands">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section JS {
+    <script>
+        
+            cargarBrands();
+
+            $("#btnBrands").click(function () {
+                LimpiarFormularioBrands();
+                $("#modalBrands").modal("show");
+            });
+
+            $("#btnSaveBrands").click(function () {
+                const data_Brand = {
+                    id_marca: $("#_id_marca_").val() || 0,
+                    nombre_marca: $("#txtnombre").val(),
+                };
+
+                $.ajax({
+                    url: "/SFBrands/AddUpdate",
+                    data: data_Brand,
+                    type: "POST",
+                    success: function (res) {
+                        if (res.ok) {
+                            mostrarToast("Éxito", res.message, "success");
+                            cargarBrands();
+                            $("#modalBrands").modal("hide");
+                            LimpiarFormularioBrands();
+                        } else {
+                            mostrarToast("ALERTA!!", res.message, "warning");
+                        }
+                    },
+                    error: function () {
+                        alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                    }
+                });
+            });
+
+            function cargarBrands() {
+                $.ajax({
+                    url: "/SFBrands/ListBrand",
+                    type: "POST",
+                    success: function (res) {
+                        if (res.ok) {
+                            LlenarTablaBrands(res.data);
+                        } else {
+                            mostrarToast("Error", res.message, "error");
+                        }
+                    },
+                    error: function () {
+                        alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                    }
+                });
+            }
+
+            function LlenarTablaBrands(lista) {
+                if ($.fn.DataTable.isDataTable("#tmainBrands")) {
+                    $("#tmainBrands").DataTable().destroy();
+                }
+                $("#tmainBrands tbody").empty();
+
+                $("#tmainBrands").DataTable({
+                    data: lista,
+                    columns: [
+                        { data: "nombre_marca" },
+                        {
+                            data: "estatus",
+                            render: function (data) {
+                                return data === "Activo"
+                                    ? `<span class="badge badge-subtle-success">Activo<span class="ms-1 fas fa-check"></span></span>`
+                                    : `<span class="badge badge-subtle-warning">Inactivo<span class="ms-1 fas fa-stream"></span></span>`;
+                            }
+                        },
+                        {
+                            data: "id_marca",
+                            render: function (value, type, row) {
+                                let status = row.estatus === "Activo"
+                                    ? `<a class="dropdown-item text-warning" onclick="HandleStatus(${row.id_marca}, 'Deactivate');"><i class="fas fa-toggle-off me-2"></i>Desactivar</a>`
+                                    : `<a class="dropdown-item text-success" onclick="HandleStatus(${row.id_marca}, 'Activate');"><i class="fas fa-toggle-on me-2"></i>Activar</a>`;
+
+                                return `
+                        <div class="dropdown text-end">
+                            <button class="btn btn-link btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="fas fa-ellipsis-h fs-10"></span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end border py-0">
+                                <div class="py-2">
+                                    <a class="dropdown-item" onclick="ShowModalBrandsEdit(${value});"><i class="fas fa-edit me-2"></i>Editar</a>
+                                    ${status}
+                                </div>
+                            </div>
+                        </div>`;
+                            }
+                        }
+                    ],
+                    language: lang_mx
+                });
+            }
+
+            function HandleStatus(id_marca, action) {
+                $.ajax({
+                    url: "/SFBrands/HandleStatus",
+                    type: "POST",
+                    data: { id_marca, action },
+                    success: function (response) {
+                        if (response.ok) {
+                            mostrarToast("Éxito", response.message, "success");
+                            cargarBrands();
+                        } else {
+                            mostrarToast("Error", response.message, "error");
+                        }
+                    },
+                    error: function () {
+                        alert("Ocurrió un error interno, por favor inténtalo más tarde");
+                    }
+                });
+            }
+
+            function ShowModalBrandsEdit(id_marca) {
+                $.ajax({
+                    url: "/SFBrands/ListBrand",
+                    data: { id_marca: id_marca },
+                    type: "POST",
+                    success: function (res) {
+                        if (res.ok) {
+                            const marca = res.data[0];
+                            $("#_id_marca_").val(marca.id_marca);
+                            $("#txtnombre").val(marca.nombre_marca);
+                            $("#modalBrands").modal("show");
+                        } else {
+                            alert("No se encontraron datos para la marca seleccionada.");
+                        }
+                    },
+                    error: function () {
+                        alert("Ocurrió un error interno, por favor inténtalo más tarde.");
+                    }
+                });
+            }
+
+            function LimpiarFormularioBrands() {
+                $("#_id_marca_").val(0);
+                $("#txtnombre").val("");
+            }
+
+            function mostrarToast(titulo, mensaje, tipo) {
+                $("#toastContainer").empty();
+
+                let icon = '';
+                let alertClass = '';
+
+                switch (tipo) {
+                    case 'success':
+                        icon = '<span class="fas fa-check-circle text-white fs-6"></span>';
+                        alertClass = 'alert-success';
+                        break;
+                    case 'error':
+                        icon = '<span class="fas fa-times-circle text-white fs-6"></span>';
+                        alertClass = 'alert-danger';
+                        break;
+                    case 'warning':
+                        icon = '<span class="fas fa-exclamation-circle text-white fs-6"></span>';
+                        alertClass = 'alert-warning';
+                        break;
+                    case 'info':
+                        icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+                        alertClass = 'alert-info';
+                        break;
+                }
+
+                let toastElement = $(`
+                    <div class="alert ${alertClass} alert-dismissible fade show d-flex align-items-center" role="alert">
+                        ${icon} <span class="ms-2">${mensaje}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `);
+
+                $("#toastContainer").append(toastElement);
+
+                setTimeout(() => {
+                    toastElement.alert('close');
+                }, 3000);
+            }
+
+    </script>
+}
