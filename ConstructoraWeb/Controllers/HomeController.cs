@@ -11,11 +11,5 @@ namespace ConstructoraWeb.Controllers
             ViewBag.UserName = userName;
             return View();
         }
-        public IActionResult Test()
-        {
-            var userName = HttpContext.Session.GetString("UserName");
-            ViewBag.UserName = userName;
-            return View();
-        }
     }
 }

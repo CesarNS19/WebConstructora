@@ -1,0 +1,507 @@
+@{
+ViewData["Title"] = "Productos";
+}
+
+@section css {
+<style>
+  .btn-link {
+    position: relative;
+    z-index: 9999;
+  }
+</style>
+}
+
+<div class="card">
+  <div class="card-body d-flex justify-content-between">
+    <div>
+      <span class="fw-bold text-primary">Acciones para los Perfumes</span>
+
+      <span class="mx-1 mx-sm-2 text-300">|</span>
+
+      <button class="btn btn-primary btn-sm " type="button" id="btnParfum" data-bs-toggle="tooltip"
+              data-bs-placement="top" data-bs-original-title="Agregar Perfume">
+        Perfume
+        <i class="fas fa-plus fa-w-16"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive scrollbar">
+      <table class="table table-sm  table-hover fs-10 mb-0 overflow-hidden" style="width:100%" id="tmainParfum">
+        <thead class="bg-200">
+        <tr>
+          <th class="text-900">Perfume</th>
+          <th class="text-900">Marca Del Perfume</th>
+          <th class="text-900">Tipo Fragancia</th>
+          <th class="text-900">Genero</th>
+          <th class="text-900">Tamaño Ml</th>
+          <th class="text-900">Precio</th>
+          <th class="text-900">Stock</th>
+          <th class="text-900">Descripción</th>
+          <th class="text-900">Imágen</th>
+          <th class="text-center text-900">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered col-sm-6">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirmación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmMessage">¿Estás seguro de que deseas eliminar este elemento?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmButton">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="modalParfum">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Perfumes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Marca de Perfume</label>
+          <select class="form-control" id="listBrands">
+            <option value="-1">Seleccione</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="txtNombre">Nombre <span class="Required">*</span></label>
+          <input type="hidden" id="_id_producto_" value="0" />
+          <input type="text" id="txtNombre" class="form-control" placeholder="Nombre del Perfume" />
+        </div>
+        <div class="form-group">
+          <label for="txtTipo">Tipo Fragancia<span class="Required">*</span></label>
+          <input type="text" id="txtTipo" class="form-control" placeholder="Tipo de Fragancia" />
+        </div>
+        <div class="form-group">
+          <label for="txtGenero">Genero<span class="Required">*</span></label>
+          <input type="text" id="txtGenero" class="form-control" placeholder="Genero" />
+        </div>
+        <div class="form-group">
+          <label for="txtTamano">Tamaño Ml<span class="Required">*</span></label>
+          <input type="text" id="txtTamano" class="form-control" placeholder="Tamaño" />
+        </div>
+        <div class="form-group">
+          <label for="txtPrecio">Precio<span class="Required">*</span></label>
+          <input type="text" id="txtPrecio" class="form-control" placeholder="Precio" />
+        </div>
+        <div class="form-group">
+          <label for="txtStock">Stock<span class="Required">*</span></label>
+          <input type="text" id="txtStock" class="form-control" placeholder="Stock" />
+        </div>
+        <div class="form-group">
+          <label for="txtDescripcion">Descripcion<span class="Required">*</span></label>
+          <input type="text" id="txtDescripcion" class="form-control" placeholder="Descripcion" />
+        </div>
+        <div class="mb-3">
+          <label for="parfumImagePreview" class="form-label">Imagen Actual</label>
+          <img id="parfumImagePreview" src="" alt="Vista previa de la imagen" style="width: 60px; height: 60px; object-fit: cover; margin-left: 10px; margin-top: 15px;">
+        </div>
+        <div class="col-12 mb-3">
+          <div class="dropzone dropzone-single p-0" id="dropzoneParfumImage" data-dropzone="data-dropzone" style="height: 240px;"
+               data-options='{"url":"/img","maxFiles":1,"dictDefaultMessage":"Arrastra o elige un archivo aquí","acceptedFiles":"image/*"}'>
+            <div class="dz-message" data-dz-message="data-dz-message">
+              <div class="dz-message-text">
+                <i class="fas fa-cloud-upload-alt me-2" style="font-size: 24px;"></i>
+                Arrastra tu archivo aquí o <span class="btn btn-link p-0 fs-10">Explora</span>
+              </div>
+            </div>
+            <div class="dz-preview dz-preview-single" style="position: absolute;">
+              <div class="dz-preview-cover dz-complete">
+                <img class="dz-preview-img" src="" alt="Preview" data-dz-thumbnail="" />
+                <a class="dz-remove text-danger" href="#!" data-dz-remove="data-dz-remove">
+                  <span class="fas fa-times"></span>
+                </a>
+                <div class="dz-progress">
+                  <span class="dz-upload" data-dz-uploadprogress=""></span>
+                </div>
+                <div class="dz-errormessage m-1">
+                  <span data-dz-errormessage="data-dz-errormessage"></span>
+                </div>
+              </div>
+              <div class="dz-progress">
+                <span class="dz-upload" data-dz-uploadprogress=""></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnSaveParfum">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section JS {
+  <script>
+
+  Dropzone.options.dropzoneTruckImage = {
+    url: "/img", // URL de carga de archivos
+    maxFiles: 1,
+    acceptedFiles: "image/*",
+    dictDefaultMessage: "Arrastra o elige un archivo aquí",
+    init: function () {
+      let dropzoneInstance = this;
+
+      // Maneja la carga de una nueva imagen
+      this.on("addedfile", function (file) {
+        // Si ya hay una imagen previa, remuévela
+        if (dropzoneInstance.getAcceptedFiles().length > 1) {
+          dropzoneInstance.removeFile(dropzoneInstance.getAcceptedFiles()[0]);
+        }
+      });
+
+      // Maneja la vista previa de la imagen
+      this.on("thumbnail", function (file, dataUrl) {
+        // Muestra la imagen previa en el Dropzone
+        document.getElementById('parfumImagePreview').src = dataUrl;
+      });
+
+      // Maneja la respuesta del servidor si es necesario
+      this.on("success", function (file, response) {
+        console.log("Archivo cargado con éxito");
+      });
+
+      // Maneja errores si es necesario
+      this.on("error", function (file, errorMessage) {
+        console.error("Error en la carga:", errorMessage);
+      });
+
+      // Agrega el manejo del clic en "Explora"
+      document.querySelector("#dropzoneTruckImage .dz-message .explore-button").addEventListener("click", function () {
+        dropzoneInstance.hiddenFileInput.click();
+      });
+    }
+  };
+
+  $(document).ready(function () {
+    cargarBrands();
+    cargarParfum();
+    
+    $("#btnParfum").click(function () {
+      LimpiarFormularioParfum();
+      $("#modalParfum").modal("show");
+    });
+    
+    $("#btnSaveParfum").click(function () {
+      var formData = new FormData();
+      formData.append("id_producto", $("#_id_producto_").val() || 0);
+      formData.append("nombre", $("#txtNombre").val()),
+      formData.append("id_marca", $("#listBrands").val()),
+      formData.append("tipo_fragancia", $("#txtTipo").val()),
+      formData.append("genero", $("#txtGenero").val()),
+      formData.append("tamanio_ml", $("#txtTamano").val()),
+      formData.append("precio", $("#txtPrecio").val()),
+      formData.append("stock", $("#txtStock").val()),
+      formData.append("descripcion", $("#txtDescripcion").val());
+
+      var dropzoneInstance = $("#dropzoneParfumImage").get(0).dropzone;
+      var file = dropzoneInstance.getAcceptedFiles()[0];
+      if (file) {
+        formData.append("file", file);
+      }
+
+      $.ajax({
+        url: '/SFProducts/AddUpdate',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (res) {
+          if (res.ok) {
+            $("#modalParfum").modal("hide");
+            mostrarToast("Éxito", res.message, "success");
+            cargarParfum();
+            LimpiarFormularioParfum();
+          } else {
+            mostrarToast("ALERTA!!", res.message, "warning");
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error("Error en AddUpdate:", error);
+          alert("Ocurrió un error interno, por favor inténtalo más tarde");
+        }
+      });
+    });
+  });
+
+  function cargarBrands() {
+    $.ajax({
+      url: "/SFBrands/ListBrand",
+      type: "POST",
+      success: function (res) {
+        if (res.ok) {
+          let html = `<option value="-1">Seleccione</option>`;
+          $.each(res.data, (index, value) => {
+            html += `<option value="${value.id_marca}">${value.nombre_marca}</option>`;
+          });
+          $("#listBrands").html(html);
+        } else {
+          mostrarToast("Error", res.message, "error");
+        }
+      },
+      error: function () {
+        alert("Ocurrió un error interno, por favor inténtalo más tarde");
+      }
+    });
+  }
+
+  function cargarParfum() {
+    $.ajax({
+      url: "/SFProducts/ListParfum",
+      type: "POST",
+      success: function (res) {
+        if (res.ok) {
+          LlenarTablaParfum(res.data);
+        } else {
+          mostrarToast("Error", res.message, "error");
+        }
+      },
+      error: function () {
+        alert("Ocurrió un error interno, por favor inténtalo más tarde");
+      }
+    });
+  }
+
+  function LlenarTablaParfum(lista) {
+    if ($.fn.DataTable.isDataTable("#tmainParfum")) {
+      $("#tmainParfum").DataTable().destroy();
+    }
+    $("#tmainParfum tbody").empty();
+
+    let tabla = $("#tmainParfum").DataTable({
+      data: lista,
+      columns: [
+        { data: "nombre" },
+        { data: "id_marca" },
+        { data: "tipo_fragancia" },
+        { data: "genero" },
+        { data: "tamanio_ml" },
+        { data: "precio" },
+        { data: "stock" },
+        { data: "descripcion" },
+        {
+          data: "estatus",
+          render: function (data) {
+            if (data === "Activo") {
+              return `<span class="badge badge rounded-pill badge-subtle-success">Activo<span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>`;
+            } else if (data === "Inactivo") {
+              return `<span class="badge badge rounded-pill badge-subtle-warning">Inactivo<span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span></span>`;
+            }
+          }
+        },
+        {
+          data: 'imagen',
+          render: (value, type, row) => {
+            return `
+            <img class="" src="/img/${value}" width="40px" height="40px" alt="imagen">
+          `;
+          }
+        },
+        {
+          data: "id_producto",
+          render: function (value, type, row) {
+            let status = '';
+            let statusIcon = '';
+            if (row.estatus === "Activo") {
+              status = `<a class="dropdown-item text-warning" onclick="HandleStatus(${row.id_producto}, 'Deactivate');" href="#!"><i class="fas fa-toggle-off me-2"></i>Desactivar</a>`;
+            } else if (row.estatus === "Inactivo") {
+              status = `<a class="dropdown-item text-success" onclick="HandleStatus(${row.id_producto}, 'Activate');" href="#!"><i class="fas fa-toggle-on me-2"></i>Activar</a>`;
+            }
+            return `
+                    <div class="dropdown font-sans-serif position-static text-end">
+                        <button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false">
+                            <span class="fas fa-ellipsis-h fs-10"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end border py-0">
+                            <div class="py-2">
+                                <a class="dropdown-item" onclick="ShowModalParfumEdit(${value});"><i class="fas fa-edit me-2"></i>Editar</a>
+                                ${status}
+                                <a class="dropdown-item text-danger" onclick="DeleteParfum(${value});" href="#!"><i class="fas fa-trash-alt me-2"></i>Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+          }
+        }
+      ],
+      language: lang_mx
+    });
+  }
+  
+  function ShowModalParfumEdit(id_producto) {
+    $.ajax({
+      url: "/SFProducts/listParfum",
+      data: { id_producto: id_producto },
+      type: "POST",
+      success: function (res) {
+        if (res.ok) {
+          const parfum = res.data[0];
+          $("#_id_producto_").val(parfum.id_producto);
+          $("#txtNombre").val(parfum.nombre);
+          $("#listBrands").val(parfum.id_marca);
+          $("#txtTipo").val(parfum.tipo_fragancia);
+          $("#txtGenero").val(parfum.genero);
+          $("#txtTamano").val(parfum.tamanio_ml);
+          $("#txtPrecio").val(parfum.precio);
+          $("#txtStock").val(parfum.stock);
+          $("#txtDescripcion").val(parfum.descripcion);
+
+          const imageUrl = parfum.imagen ? `/img/${parfum.imagen}` : '';
+
+          $("#parfumImagePreview").attr("src", imageUrl);
+
+          let dropzoneInstance = Dropzone.forElement("#dropzoneParfumImage");
+
+          dropzoneInstance.removeAllFiles(true);
+
+          $("#modalParfum").modal("show");
+        } else {
+          alert("No se encontraron datos para el Camión seleccionado.");
+        }
+      },
+      error: function () {
+        alert("Ocurrió un error interno, por favor inténtalo más tarde.");
+      }
+    });
+  }
+
+  function LimpiarFormularioParfum() {
+    $("#_id_producto_").val("");
+    $("#listBrands").val("-1");
+    $("#txtNombre").val("");
+    $("#txtTipo").val("");
+    $("#txtGenero").val("");
+    $("#txtTamano").val("");
+    $("#txtPrecio").val("");
+    $("#txtStock").val("");
+    $("#txtDescripcion").val("");
+    $("#parfumImagePreview").attr("src", "");
+  }
+
+  function HandleStatus(id_producto, action) {
+    const parfum = {
+      id_producto: id_producto,
+      Action: action
+    };
+    $.ajax({
+      url: "/SFProducts/HandleStatus",
+      type: "POST",
+      data: parfum,
+      beforeSend: function () {
+      },
+      success: function (response) {
+        if (response.ok) {
+          mostrarToast("Éxito", response.message, "success");
+          cargarParfum();
+        } else {
+          mostrarToast("Error", response.message, "error");
+        }
+      },
+      error: function () {
+        alert("Ocurrió un error interno, por favor inténtalo más tarde");
+      }
+    });
+  }
+
+  function DeleteParfum(id_producto) {
+    showConfirmModal("¿Estás seguro de que deseas eliminar este perfume?", function() {
+      const parfum = {
+        id_producto: id_producto,
+      };
+      $.ajax({
+        url: "/SFProducts/DeleteParfum",
+        type: "POST",
+        data: parfum,
+        beforeSend: function () {
+        },
+        success: function (response) {
+          if (response.ok) {
+            mostrarToast("Éxito", response.message, "success");
+            cargarParfum();
+          } else {
+            mostrarToast("Error", response.message, "error");
+          }
+        },
+        error: function () {
+          alert("Ocurrió un error interno, por favor inténtalo más tarde");
+        }
+      });
+    });
+  }
+
+  function showConfirmModal(message, confirmCallback) {
+    $('#confirmMessage').text(message);
+    $('#confirmButton').off('click').on('click', function() {
+      confirmCallback();
+      $('#confirmModal').modal('hide');
+    });
+    $('#confirmModal').modal('show');
+  }
+
+  function mostrarToast(titulo, mensaje, tipo) {
+    let icon = '';
+    let alertClass = '';
+
+    switch (tipo) {
+      case 'success':
+        icon = '<span class="fas fa-check-circle text-white fs-6"></span>';
+        alertClass = 'alert-success';
+        break;
+      case 'error':
+        icon = '<span class="fas fa-times-circle text-white fs-6"></span>';
+        alertClass = 'alert-danger';
+        break;
+      case 'warning':
+        icon = '<span class="fas fa-exclamation-circle text-white fs-6"></span>';
+        alertClass = 'alert-warning';
+        break;
+      case 'info':
+        icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+        alertClass = 'alert-info';
+        break;
+      default:
+        icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+        alertClass = 'alert-info';
+        break;
+    }
+
+    const alert = `
+        <div class="alert ${alertClass} d-flex align-items-center" role="alert">
+            <div class="me-2">${icon}</div>
+            <div>${titulo}: ${mensaje}</div>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+
+    $("#Alert").html(alert);
+
+    setTimeout(() => {
+      $(".alert").alert('close');
+    }, 4000);
+  }
+
+</script>
+}
