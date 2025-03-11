@@ -1,6 +1,7 @@
 @{
 ViewData["Title"] = "Productos";
 }
+<div id="toastContainer"></div>
 
 <div class="container mt-4">
   <div class="row" id="productsContainer">
@@ -66,29 +67,93 @@ ViewData["Title"] = "Productos";
       let marcaNombre = marca ? marca.nombre_marca : "Desconocida";
 
       return `
-          <div class="col-md-4 mb-4">
-            <div class="card border-0 shadow-sm">
-              <div class="text-center">
-                <img src="/img/${product.imagen}" class="img-fluid rounded mt-2" alt="${product.nombre}" style="max-height: 140px;">
+        <div class="col-md-4 mb-4">
+          <div class="card border-0 shadow-sm">
+            <div class="text-center">
+              <img src="/img/${product.imagen}" class="img-fluid rounded mt-2" alt="${product.nombre}" style="max-height: 140px;">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-center">${product.nombre || "Sin nombre"}</h5>
+              <div class="row">
+                <div class="col-6"><p class="mb-1"><strong class="text-primary">Marca:</strong> ${marcaNombre}</p></div>
+                <div class="col-6"><p class="mb-1"><strong class="text-primary">Tipo:</strong> ${product.tipo_fragancia || "N/A"}</p></div>
+                <div class="col-6"><p class="mb-1"><strong class="text-primary">Género:</strong> ${product.genero || "N/A"}</p></div>
+                <div class="col-6"><p class="mb-1"><strong class="text-primary">Tamaño:</strong> ${product.tamanio_ml ? product.tamanio_ml + " ml" : "N/A"}</p></div>
+                <div class="col-6"><p class="mb-1"><strong class="text-primary">Precio:</strong> $${product.precio ? product.precio.toFixed(2) : "0.00"}</p></div>
+                <div class="col-6"><p class="mb-1"><strong class="text-primary">Stock:</strong> ${product.stock || 0}</p></div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title text-center">${product.nombre || "Sin nombre"}</h5>
-                <div class="row">
-                  <div class="col-6"><p class="mb-1"><strong class="text-primary">Marca:</strong> ${marcaNombre}</p></div>
-                  <div class="col-6"><p class="mb-1"><strong class="text-primary">Tipo:</strong> ${product.tipo_fragancia || "N/A"}</p></div>
-                  <div class="col-6"><p class="mb-1"><strong class="text-primary">Género:</strong> ${product.genero || "N/A"}</p></div>
-                  <div class="col-6"><p class="mb-1"><strong class="text-primary">Tamaño:</strong> ${product.tamanio_ml ? product.tamanio_ml + " ml" : "N/A"}</p></div>
-                  <div class="col-6"><p class="mb-1"><strong class="text-primary">Precio:</strong> $${product.precio ? product.precio.toFixed(2) : "0.00"}</p></div>
-                  <div class="col-6"><p class="mb-1"><strong class="text-primary">Stock:</strong> ${product.stock || 0}</p></div>
-                </div>
-                <p class="mt-2"><strong class="text-primary">Descripción:</strong> ${product.descripcion || "Sin descripción"}</p>
-              </div>
+              <p class="mt-2"><strong class="text-primary">Descripción:</strong> ${product.descripcion || "Sin descripción"}</p>
+              <button class="btn btn-primary w-100 mt-2" onclick="agregarAlCarrito(${product.id_producto}, ${product.precio}, ${product.id_marca})">
+                <i class="fas fa-shopping-cart"></i> Agregar al carrito
+              </button>
             </div>
           </div>
-        `;
+        </div>
+      `;
     }).join("");
 
     container.html(cardsHTML);
+  }
+
+  function agregarAlCarrito(id_producto, precio, id_marca) {
+    $.ajax({
+      url: "/SFCart/AddToCart",
+      type: "POST",
+      data: {
+        productId: id_producto,
+        quantity: 1,
+        brandId: id_marca,
+      },
+      success: function (res) {
+        if (res.success) {
+          mostrarToast("Éxito", "Producto agregado al carrito", "success");
+        } else {
+          mostrarToast("Error", res.message || "No se pudo agregar el producto", "error");
+        }
+      },
+      error: function () {
+        mostrarToast("Error", "Ocurrió un error interno, inténtalo más tarde", "error");
+      }
+    });
+  }
+  
+  function mostrarToast(titulo, mensaje, tipo) {
+    $("#toastContainer").empty();
+
+    let icon = '';
+    let alertClass = '';
+
+    switch (tipo) {
+      case 'success':
+        icon = '<span class="fas fa-check-circle text-white fs-6"></span>';
+        alertClass = 'alert-success';
+        break;
+      case 'error':
+        icon = '<span class="fas fa-times-circle text-white fs-6"></span>';
+        alertClass = 'alert-danger';
+        break;
+      case 'warning':
+        icon = '<span class="fas fa-exclamation-circle text-white fs-6"></span>';
+        alertClass = 'alert-warning';
+        break;
+      case 'info':
+        icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+        alertClass = 'alert-info';
+        break;
+    }
+
+    let toastElement = $(`
+                    <div class="alert ${alertClass} alert-dismissible fade show d-flex align-items-center" role="alert">
+                        ${icon} <span class="ms-2">${mensaje}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `);
+
+    $("#toastContainer").append(toastElement);
+
+    setTimeout(() => {
+      toastElement.alert('close');
+    }, 3000);
   }
 </script>
 }

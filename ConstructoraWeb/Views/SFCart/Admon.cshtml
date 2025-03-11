@@ -1,0 +1,49 @@
+@{
+ViewData["Title"] = "Carrito";
+}
+<div id="toastContainer"></div>
+
+<h1>Hola</h1>
+
+@section JS {
+  <script>
+  function mostrarToast(titulo, mensaje, tipo) {
+    $("#toastContainer").empty();
+
+    let icon = '';
+    let alertClass = '';
+
+    switch (tipo) {
+      case 'success':
+        icon = '<span class="fas fa-check-circle text-white fs-6"></span>';
+        alertClass = 'alert-success';
+        break;
+      case 'error':
+        icon = '<span class="fas fa-times-circle text-white fs-6"></span>';
+        alertClass = 'alert-danger';
+        break;
+      case 'warning':
+        icon = '<span class="fas fa-exclamation-circle text-white fs-6"></span>';
+        alertClass = 'alert-warning';
+        break;
+      case 'info':
+        icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+        alertClass = 'alert-info';
+        break;
+    }
+
+    let toastElement = $(`
+                    <div class="alert ${alertClass} alert-dismissible fade show d-flex align-items-center" role="alert">
+                        ${icon} <span class="ms-2">${mensaje}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `);
+
+    $("#toastContainer").append(toastElement);
+
+    setTimeout(() => {
+      toastElement.alert('close');
+    }, 3000);
+  }
+</script>
+}

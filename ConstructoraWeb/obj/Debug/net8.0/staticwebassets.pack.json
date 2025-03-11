@@ -57,8 +57,20 @@
       "PackagePath": "staticwebassets\\img\\aqua di gio.jpeg"
     },
     {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\bad_boy_extreme.jpg",
+      "PackagePath": "staticwebassets\\img\\bad_boy_extreme.jpg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\calvin_klein_one.avif",
+      "PackagePath": "staticwebassets\\img\\calvin_klein_one.avif"
+    },
+    {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\cama.jpg",
       "PackagePath": "staticwebassets\\img\\cama.jpg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\ck_one.jpeg",
+      "PackagePath": "staticwebassets\\img\\ck_one.jpeg"
     },
     {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\descarga (1).jpeg",
@@ -67,6 +79,14 @@
     {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\descarga.jpeg",
       "PackagePath": "staticwebassets\\img\\descarga.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\invictus_platinum.jpeg",
+      "PackagePath": "staticwebassets\\img\\invictus_platinum.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\invictus_victory.jpg",
+      "PackagePath": "staticwebassets\\img\\invictus_victory.jpg"
     },
     {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\led.jpeg",

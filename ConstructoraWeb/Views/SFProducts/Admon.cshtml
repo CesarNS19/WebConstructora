@@ -32,6 +32,8 @@ ViewData["Title"] = "Perfumes";
 </div>
 <br>
 
+<div id="toastContainer"></div>
+
 <div class="card">
   <div class="card-body">
     <div class="table-responsive scrollbar">
@@ -467,6 +469,8 @@ ViewData["Title"] = "Perfumes";
   }
 
   function mostrarToast(titulo, mensaje, tipo) {
+    $("#toastContainer").empty();
+
     let icon = '';
     let alertClass = '';
 
@@ -487,25 +491,20 @@ ViewData["Title"] = "Perfumes";
         icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
         alertClass = 'alert-info';
         break;
-      default:
-        icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
-        alertClass = 'alert-info';
-        break;
     }
 
-    const alert = `
-        <div class="alert ${alertClass} d-flex align-items-center" role="alert">
-            <div class="me-2">${icon}</div>
-            <div>${titulo}: ${mensaje}</div>
-            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>`;
+    let toastElement = $(`
+                    <div class="alert ${alertClass} alert-dismissible fade show d-flex align-items-center" role="alert">
+                        ${icon} <span class="ms-2">${mensaje}</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                `);
 
-    $("#Alert").html(alert);
+    $("#toastContainer").append(toastElement);
 
     setTimeout(() => {
-      $(".alert").alert('close');
-    }, 4000);
+      toastElement.alert('close');
+    }, 3000);
   }
-
 </script>
 }

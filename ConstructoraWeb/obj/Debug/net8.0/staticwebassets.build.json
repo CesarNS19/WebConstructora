@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2TWy4zlJj2FwcdhWg8k/7RNhW2lAwrbrPQiiSXby7Ok=",
+  "Hash": "0j9SFDz+KXfEJFLPCGGPTdSIMKvz+h/3no+cjWrxc08=",
   "Source": "ConstructoraWeb",
   "BasePath": "_content/ConstructoraWeb",
   "Mode": "Default",
@@ -311,6 +311,48 @@
       "OriginalItemSpec": "wwwroot\\img\\aqua di gio.jpeg"
     },
     {
+      "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\bad_boy_extreme.jpg",
+      "SourceId": "ConstructoraWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\",
+      "BasePath": "_content/ConstructoraWeb",
+      "RelativePath": "img/bad_boy_extreme#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "l5dkry4oj1",
+      "Integrity": "Z316b75J5Uu22EPQkP1cEiNZkC7WvaA349jpDBnnNSM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\bad_boy_extreme.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\calvin_klein_one.avif",
+      "SourceId": "ConstructoraWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\",
+      "BasePath": "_content/ConstructoraWeb",
+      "RelativePath": "img/calvin_klein_one#[.{fingerprint}]?.avif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "05em3hgcow",
+      "Integrity": "7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\calvin_klein_one.avif"
+    },
+    {
       "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\cama.jpg",
       "SourceId": "ConstructoraWeb",
       "SourceType": "Discovered",
@@ -330,6 +372,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\cama.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\ck_one.jpeg",
+      "SourceId": "ConstructoraWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\",
+      "BasePath": "_content/ConstructoraWeb",
+      "RelativePath": "img/ck_one#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rxdt480crw",
+      "Integrity": "z4+m93uu/HJZqfXiLy3iCcE2ddt2rUvsFFpm7iHZe1Y=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\ck_one.jpeg"
     },
     {
       "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\descarga (1).jpeg",
@@ -372,6 +435,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\descarga.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\invictus_platinum.jpeg",
+      "SourceId": "ConstructoraWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\",
+      "BasePath": "_content/ConstructoraWeb",
+      "RelativePath": "img/invictus_platinum#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sf0dt9e713",
+      "Integrity": "iBtMB11NZ+TYaP2KNE9MtbJr8n97fcIxN4aoEuY1Op4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\invictus_platinum.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\invictus_victory.jpg",
+      "SourceId": "ConstructoraWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\",
+      "BasePath": "_content/ConstructoraWeb",
+      "RelativePath": "img/invictus_victory#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "702znnx4o6",
+      "Integrity": "GchKiL40vHmg5DkNMcz1fbyNSV7eu2eLDm+E8/Matr0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\invictus_victory.jpg"
     },
     {
       "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\led.jpeg",
@@ -3330,6 +3435,170 @@
       ]
     },
     {
+      "Route": "img/bad_boy_extreme.jpg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\bad_boy_extreme.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "167359"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z316b75J5Uu22EPQkP1cEiNZkC7WvaA349jpDBnnNSM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:20:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z316b75J5Uu22EPQkP1cEiNZkC7WvaA349jpDBnnNSM="
+        }
+      ]
+    },
+    {
+      "Route": "img/bad_boy_extreme.l5dkry4oj1.jpg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\bad_boy_extreme.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "167359"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z316b75J5Uu22EPQkP1cEiNZkC7WvaA349jpDBnnNSM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:20:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l5dkry4oj1"
+        },
+        {
+          "Name": "label",
+          "Value": "img/bad_boy_extreme.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z316b75J5Uu22EPQkP1cEiNZkC7WvaA349jpDBnnNSM="
+        }
+      ]
+    },
+    {
+      "Route": "img/calvin_klein_one.05em3hgcow.avif",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\calvin_klein_one.avif",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "91724"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:24:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "05em3hgcow"
+        },
+        {
+          "Name": "label",
+          "Value": "img/calvin_klein_one.avif"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8="
+        }
+      ]
+    },
+    {
+      "Route": "img/calvin_klein_one.avif",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\calvin_klein_one.avif",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "91724"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:24:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8="
+        }
+      ]
+    },
+    {
       "Route": "img/cama.jpg",
       "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\cama.jpg",
       "Selectors": [],
@@ -3408,6 +3677,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-lONRP9K1Le2U6b4zHF1vE9XE+jWXrx//8t3eP9xRFX8="
+        }
+      ]
+    },
+    {
+      "Route": "img/ck_one.jpeg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\ck_one.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4068"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z4+m93uu/HJZqfXiLy3iCcE2ddt2rUvsFFpm7iHZe1Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:25:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z4+m93uu/HJZqfXiLy3iCcE2ddt2rUvsFFpm7iHZe1Y="
+        }
+      ]
+    },
+    {
+      "Route": "img/ck_one.rxdt480crw.jpeg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\ck_one.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4068"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z4+m93uu/HJZqfXiLy3iCcE2ddt2rUvsFFpm7iHZe1Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:25:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rxdt480crw"
+        },
+        {
+          "Name": "label",
+          "Value": "img/ck_one.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z4+m93uu/HJZqfXiLy3iCcE2ddt2rUvsFFpm7iHZe1Y="
         }
       ]
     },
@@ -3572,6 +3923,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-ZjTBMQG/UZocVo92XzhnC9WQgK7wmkQ5gf50daum1J4="
+        }
+      ]
+    },
+    {
+      "Route": "img/invictus_platinum.jpeg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\invictus_platinum.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7309"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iBtMB11NZ+TYaP2KNE9MtbJr8n97fcIxN4aoEuY1Op4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:16:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-iBtMB11NZ+TYaP2KNE9MtbJr8n97fcIxN4aoEuY1Op4="
+        }
+      ]
+    },
+    {
+      "Route": "img/invictus_platinum.sf0dt9e713.jpeg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\invictus_platinum.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7309"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iBtMB11NZ+TYaP2KNE9MtbJr8n97fcIxN4aoEuY1Op4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:16:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sf0dt9e713"
+        },
+        {
+          "Name": "label",
+          "Value": "img/invictus_platinum.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-iBtMB11NZ+TYaP2KNE9MtbJr8n97fcIxN4aoEuY1Op4="
+        }
+      ]
+    },
+    {
+      "Route": "img/invictus_victory.702znnx4o6.jpg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\invictus_victory.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "64544"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GchKiL40vHmg5DkNMcz1fbyNSV7eu2eLDm+E8/Matr0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:15:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "702znnx4o6"
+        },
+        {
+          "Name": "label",
+          "Value": "img/invictus_victory.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GchKiL40vHmg5DkNMcz1fbyNSV7eu2eLDm+E8/Matr0="
+        }
+      ]
+    },
+    {
+      "Route": "img/invictus_victory.jpg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\invictus_victory.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "64544"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GchKiL40vHmg5DkNMcz1fbyNSV7eu2eLDm+E8/Matr0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 01:15:08 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GchKiL40vHmg5DkNMcz1fbyNSV7eu2eLDm+E8/Matr0="
         }
       ]
     },
