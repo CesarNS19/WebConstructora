@@ -22,7 +22,9 @@ namespace ConstructoraWeb.Controllers
     {
       try
       {
-
+        var userName = HttpContext.Session.GetString("UserName");
+        ViewBag.UserName = userName;
+        
         var userEmail = HttpContext.Session.GetString("UserEmail");
         ViewBag.UserEmail = userEmail;
         bool hasPermission = _subModuleSrv.CheckPermissionOnView(userEmail, "SFBrands ", "Admon");

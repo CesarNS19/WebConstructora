@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yRpLmqusCc9tLAujI4bacU0vaqJQkE7zQMGeO3s4e7s=",
+  "Hash": "2TWy4zlJj2FwcdhWg8k/7RNhW2lAwrbrPQiiSXby7Ok=",
   "Source": "ConstructoraWeb",
   "BasePath": "_content/ConstructoraWeb",
   "Mode": "Default",
@@ -290,6 +290,27 @@
       "OriginalItemSpec": "wwwroot\\img\\alacena.jpg"
     },
     {
+      "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\aqua di gio.jpeg",
+      "SourceId": "ConstructoraWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\",
+      "BasePath": "_content/ConstructoraWeb",
+      "RelativePath": "img/aqua di gio#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0a676kop70",
+      "Integrity": "iHFo9XqXc5Eqo0AFDFhISeSktUg9g+5iDzoYgQh/DTA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\aqua di gio.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\cama.jpg",
       "SourceId": "ConstructoraWeb",
       "SourceType": "Discovered",
@@ -393,6 +414,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\One million Lucky.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\one million.jpeg",
+      "SourceId": "ConstructoraWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\",
+      "BasePath": "_content/ConstructoraWeb",
+      "RelativePath": "img/one million#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "b4u2w0uck9",
+      "Integrity": "BfvCCz0Nj2icmaVll1V1SN3fBeBWax6y/2i1Bi9PLjQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\one million.jpeg"
     },
     {
       "Identity": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\parfum.avif",
@@ -3206,6 +3248,88 @@
       ]
     },
     {
+      "Route": "img/aqua di gio.0a676kop70.jpeg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\aqua di gio.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5077"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iHFo9XqXc5Eqo0AFDFhISeSktUg9g+5iDzoYgQh/DTA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 00:36:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0a676kop70"
+        },
+        {
+          "Name": "label",
+          "Value": "img/aqua di gio.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-iHFo9XqXc5Eqo0AFDFhISeSktUg9g+5iDzoYgQh/DTA="
+        }
+      ]
+    },
+    {
+      "Route": "img/aqua di gio.jpeg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\aqua di gio.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5077"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iHFo9XqXc5Eqo0AFDFhISeSktUg9g+5iDzoYgQh/DTA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 00:36:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-iHFo9XqXc5Eqo0AFDFhISeSktUg9g+5iDzoYgQh/DTA="
+        }
+      ]
+    },
+    {
       "Route": "img/cama.jpg",
       "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\cama.jpg",
       "Selectors": [],
@@ -3556,7 +3680,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:25:00 GMT"
+          "Value": "Tue, 11 Mar 2025 00:40:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3593,7 +3717,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:25:00 GMT"
+          "Value": "Tue, 11 Mar 2025 00:40:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3612,6 +3736,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Uf1PLWYAtViY7khjGgnom7gf3scStSBb+zNbvEN0+eo="
+        }
+      ]
+    },
+    {
+      "Route": "img/one million.b4u2w0uck9.jpeg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\one million.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5107"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BfvCCz0Nj2icmaVll1V1SN3fBeBWax6y/2i1Bi9PLjQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 00:42:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "b4u2w0uck9"
+        },
+        {
+          "Name": "label",
+          "Value": "img/one million.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BfvCCz0Nj2icmaVll1V1SN3fBeBWax6y/2i1Bi9PLjQ="
+        }
+      ]
+    },
+    {
+      "Route": "img/one million.jpeg",
+      "AssetFile": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\one million.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5107"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BfvCCz0Nj2icmaVll1V1SN3fBeBWax6y/2i1Bi9PLjQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 00:42:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BfvCCz0Nj2icmaVll1V1SN3fBeBWax6y/2i1Bi9PLjQ="
         }
       ]
     },
