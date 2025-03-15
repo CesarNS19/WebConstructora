@@ -3,47 +3,208 @@ ViewData["Title"] = "Carrito";
 }
 <div id="toastContainer"></div>
 
-<h1>Hola</h1>
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive scrollbar">
+      <h2 class="text-center">Carrito de Compras</h2>
+      <table class="table table-sm  table-hover fs-10 mb-0 overflow-hidden" style="width:100%" id="tmainCart">
+        <thead class="bg-200">
+        <tr>
+          <th class="text-900">Perfume</th>
+          <th class="text-900">Marca Del Perfume</th>
+          <th class="text-900">Tipo Fragancia</th>
+          <th class="text-900">Genero</th>
+          <th class="text-900">Tamaño Ml</th>
+          <th class="text-900">Cantidad</th>
+          <th class="text-900">Subtotal</th>
+          <th class="text-900">Descripción</th>
+          <th class="text-900">Imágen</th>
+          <th class="text-center text-900">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 @section JS {
   <script>
-  function mostrarToast(titulo, mensaje, tipo) {
-    $("#toastContainer").empty();
 
-    let icon = '';
-    let alertClass = '';
+    $(document).ready(function () {
+      cargarCart();
+    });
 
-    switch (tipo) {
-      case 'success':
-        icon = '<span class="fas fa-check-circle text-white fs-6"></span>';
-        alertClass = 'alert-success';
-        break;
-      case 'error':
-        icon = '<span class="fas fa-times-circle text-white fs-6"></span>';
-        alertClass = 'alert-danger';
-        break;
-      case 'warning':
-        icon = '<span class="fas fa-exclamation-circle text-white fs-6"></span>';
-        alertClass = 'alert-warning';
-        break;
-      case 'info':
-        icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
-        alertClass = 'alert-info';
-        break;
+    function cargarCart() {
+      $.ajax({
+        url: "/SFCart/ListCart",
+        type: "POST",
+        success: function (res) {
+          if (res.ok) {
+            LlenarTablaCart(res.data);
+          } 
+        },
+        error: function () {
+          alert("Ocurrió un error interno, por favor inténtalo más tarde");
+        }
+      });
     }
 
-    let toastElement = $(`
-                    <div class="alert ${alertClass} alert-dismissible fade show d-flex align-items-center" role="alert">
-                        ${icon} <span class="ms-2">${mensaje}</span>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    function LlenarTablaCart(lista) {
+      if (!Array.isArray(lista)) {
+        return;
+      }
+      if ($.fn.DataTable.isDataTable("#tmainCart")) {
+        $("#tmainCart").DataTable().clear().destroy();
+      }
+
+      $("#tmainCart").DataTable({
+        data: lista,
+        columns: [
+          { data: "nombre" },
+          { data: "nombre_marca" },
+          { data: "tipo_fragancia" },
+          { data: "genero" },
+          { data: "tamanio_ml" },
+          { data: "cantidad" },
+          { data: "subtotal" },
+          { data: "descripcion" },
+          {
+            data: "imagen",
+            render: function (value) {
+              return `<img src="/img/${value}" width="40px" height="40px" alt="imagen">`;
+            }
+          },
+          {
+            data: "id_carrito",
+            render: function (value) {
+              return `
+                    <div class="font-sans-serif text-end">
+                            <div class="py-2">
+                                <a class="text-danger" onclick="deleteCart(${value});" href="#!"><i class="fas fa-trash-alt me-2"></i></a>
+                                <a class="text-primary" onclick="resCant(${value});" href="#!"><i class="fas fa-minus-circle me-2"></i></a>
+                                <a class="text-primary" onclick="sumCant(${value});" href="#!"><i class="fas fa-plus-circle me-2"></i></a>
+                            </div>
                     </div>
-                `);
+                `;
+            }
+          },
+        ],
+        language: lang_mx
+      });
+    }
 
-    $("#toastContainer").append(toastElement);
+    function deleteCart(id_carrito) {
+      const sum = {
+        id_carrito: id_carrito,
+      };
+      $.ajax({
+        url: "/SFCart/deleteCart",
+        type: "POST",
+        data: sum,
+        beforeSend: function () {
+        },
+        success: function (res) {
+          if (res.ok) {
+            cargarCart();
+            mostrarToast("Éxito", res.message, "success");
+          } else {
+            mostrarToast("Error", res.message , "error");
+          }
+        },
+        error: function () {
+          alert("Ocurrió un error interno, inténtalo más tarde");
+        }
+      });
+    }
 
-    setTimeout(() => {
-      toastElement.alert('close');
-    }, 3000);
-  }
-</script>
+    function sumCant(id_carrito) {
+      const sum = {
+        id_carrito: id_carrito,
+        cantidad: 1
+      };
+      $.ajax({
+        url: "/SFCart/AddCant",
+        type: "POST",
+        data: sum,
+        beforeSend: function () {
+        },
+        success: function (res) {
+          if (res.ok) {
+          cargarCart();
+            mostrarToast("Éxito", res.message, "success");
+          } else {
+            mostrarToast("Error", res.message , "error");
+          }
+        },
+        error: function () {
+          alert("Ocurrió un error interno, inténtalo más tarde");
+        }
+      });
+    }
+
+    function resCant(id_carrito){
+        const res = {
+          id_carrito: id_carrito,
+        };
+        $.ajax({
+          url: "/SFCart/resCant",
+          type: "POST",
+          data: res,
+          beforeSend: function () {
+          },
+          success: function (response) {
+            if (response.ok) {
+              mostrarToast("Éxito", response.message, "success");
+              cargarCart();
+            } else {
+              mostrarToast("Error", response.message, "error");
+            }
+          },
+          error: function () {
+            alert("Ocurrió un error interno, por favor inténtalo más tarde");
+          }
+        });
+    }
+    
+    function mostrarToast(titulo, mensaje, tipo) {
+      $("#toastContainer").empty();
+
+      let icon = '';
+      let alertClass = '';
+
+      switch (tipo) {
+        case 'success':
+          icon = '<span class="fas fa-check-circle text-white fs-6"></span>';
+          alertClass = 'alert-success';
+          break;
+        case 'error':
+          icon = '<span class="fas fa-times-circle text-white fs-6"></span>';
+          alertClass = 'alert-danger';
+          break;
+        case 'warning':
+          icon = '<span class="fas fa-exclamation-circle text-white fs-6"></span>';
+          alertClass = 'alert-warning';
+          break;
+        case 'info':
+          icon = '<span class="fas fa-info-circle text-white fs-6"></span>';
+          alertClass = 'alert-info';
+          break;
+      }
+
+      let toastElement = $(`
+                      <div class="alert ${alertClass} alert-dismissible fade show d-flex align-items-center" role="alert">
+                          ${icon} <span class="ms-2">${mensaje}</span>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                  `);
+
+      $("#toastContainer").append(toastElement);
+
+      setTimeout(() => {
+        toastElement.alert('close');
+      }, 3000);
+    }
+  </script>
 }

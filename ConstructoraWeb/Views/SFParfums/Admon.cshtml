@@ -97,22 +97,24 @@ ViewData["Title"] = "Productos";
 
   function agregarAlCarrito(id_producto, precio, id_marca) {
     $.ajax({
-      url: "/SFCart/AddToCart",
+      url: "/SFCart/Add",
       type: "POST",
-      data: {
-        productId: id_producto,
-        quantity: 1,
-        brandId: id_marca,
-      },
+      contentType: "application/json",
+      data: JSON.stringify({
+        id_producto: id_producto,
+        cantidad: 1,
+        precio: precio,
+        id_marca: id_marca,
+      }),
       success: function (res) {
-        if (res.success) {
-          mostrarToast("Éxito", "Producto agregado al carrito", "success");
+        if (res.ok) {
+          mostrarToast("Éxito", res.message, "success");
         } else {
-          mostrarToast("Error", res.message || "No se pudo agregar el producto", "error");
+          mostrarToast("Error", res.message , "error");
         }
       },
       error: function () {
-        mostrarToast("Error", "Ocurrió un error interno, inténtalo más tarde", "error");
+        alert("Ocurrió un error interno, inténtalo más tarde");
       }
     });
   }

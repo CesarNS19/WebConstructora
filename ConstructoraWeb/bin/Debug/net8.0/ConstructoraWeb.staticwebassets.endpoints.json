@@ -987,6 +987,88 @@
       ]
     },
     {
+      "Route": "img/Yvesa Saint Laurent.dn7nd2fgu5.jpg",
+      "AssetFile": "img/Yvesa Saint Laurent.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "66115"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eesqs8YO0B5FBFZ3HTLx+LwHIZDM/Wvj60mpX9Wep0g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Mar 2025 16:54:44 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dn7nd2fgu5"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-eesqs8YO0B5FBFZ3HTLx+LwHIZDM/Wvj60mpX9Wep0g="
+        },
+        {
+          "Name": "label",
+          "Value": "img/Yvesa Saint Laurent.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "img/Yvesa Saint Laurent.jpg",
+      "AssetFile": "img/Yvesa Saint Laurent.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "66115"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eesqs8YO0B5FBFZ3HTLx+LwHIZDM/Wvj60mpX9Wep0g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Mar 2025 16:54:44 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eesqs8YO0B5FBFZ3HTLx+LwHIZDM/Wvj60mpX9Wep0g="
+        }
+      ]
+    },
+    {
       "Route": "img/alacena.gdb77np5x9.jpg",
       "AssetFile": "img/alacena.jpg",
       "Selectors": [],
@@ -1233,88 +1315,6 @@
       ]
     },
     {
-      "Route": "img/calvin_klein_one.05em3hgcow.avif",
-      "AssetFile": "img/calvin_klein_one.avif",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "91724"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 11 Mar 2025 01:24:24 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "05em3hgcow"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8="
-        },
-        {
-          "Name": "label",
-          "Value": "img/calvin_klein_one.avif"
-        }
-      ]
-    },
-    {
-      "Route": "img/calvin_klein_one.avif",
-      "AssetFile": "img/calvin_klein_one.avif",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "91724"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 11 Mar 2025 01:24:24 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-7EfauoRd3ZzOF1qbeZM0XxeAAMBpBENny8lCdeLMUo8="
-        }
-      ]
-    },
-    {
       "Route": "img/cama.jpg",
       "AssetFile": "img/cama.jpg",
       "Selectors": [],
@@ -1423,7 +1423,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 11 Mar 2025 01:25:41 GMT"
+          "Value": "Fri, 14 Mar 2025 19:58:23 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1460,7 +1460,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 11 Mar 2025 01:25:41 GMT"
+          "Value": "Fri, 14 Mar 2025 19:58:23 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1889,6 +1889,88 @@
       ]
     },
     {
+      "Route": "img/manifest.hceiooi17j.json",
+      "AssetFile": "img/manifest.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "422"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IfEjKC2XPx48e3/aC353k+bZw8L/PFYFtLoJAvrBiGo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 18:23:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hceiooi17j"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IfEjKC2XPx48e3/aC353k+bZw8L/PFYFtLoJAvrBiGo="
+        },
+        {
+          "Name": "label",
+          "Value": "img/manifest.json"
+        }
+      ]
+    },
+    {
+      "Route": "img/manifest.json",
+      "AssetFile": "img/manifest.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "422"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IfEjKC2XPx48e3/aC353k+bZw8L/PFYFtLoJAvrBiGo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 11 Mar 2025 18:23:05 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IfEjKC2XPx48e3/aC353k+bZw8L/PFYFtLoJAvrBiGo="
+        }
+      ]
+    },
+    {
       "Route": "img/one million.b4u2w0uck9.jpeg",
       "AssetFile": "img/one million.jpeg",
       "Selectors": [],
@@ -1967,88 +2049,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-BfvCCz0Nj2icmaVll1V1SN3fBeBWax6y/2i1Bi9PLjQ="
-        }
-      ]
-    },
-    {
-      "Route": "img/parfum.avif",
-      "AssetFile": "img/parfum.avif",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "24273"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"8D2EN89ekYiGpAHg0EECli6WKtyQe3FAoFYg94Mep50=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:50:11 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-8D2EN89ekYiGpAHg0EECli6WKtyQe3FAoFYg94Mep50="
-        }
-      ]
-    },
-    {
-      "Route": "img/parfum.o2vfj59jiz.avif",
-      "AssetFile": "img/parfum.avif",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "24273"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"8D2EN89ekYiGpAHg0EECli6WKtyQe3FAoFYg94Mep50=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 09 Mar 2025 20:50:11 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "o2vfj59jiz"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-8D2EN89ekYiGpAHg0EECli6WKtyQe3FAoFYg94Mep50="
-        },
-        {
-          "Name": "label",
-          "Value": "img/parfum.avif"
         }
       ]
     },
@@ -3391,7 +3391,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 01 Aug 2024 18:20:13 GMT"
+          "Value": "Tue, 11 Mar 2025 18:25:32 GMT"
         }
       ],
       "EndpointProperties": [
@@ -3436,7 +3436,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 01 Aug 2024 18:20:13 GMT"
+          "Value": "Tue, 11 Mar 2025 18:25:32 GMT"
         }
       ],
       "EndpointProperties": [

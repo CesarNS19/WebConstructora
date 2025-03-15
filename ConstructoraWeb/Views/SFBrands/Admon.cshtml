@@ -112,9 +112,7 @@
                     success: function (res) {
                         if (res.ok) {
                             LlenarTablaBrands(res.data);
-                        } else {
-                            mostrarToast("Error", res.message, "error");
-                        }
+                        } 
                     },
                     error: function () {
                         alert("Ocurrió un error interno, por favor inténtalo más tarde");

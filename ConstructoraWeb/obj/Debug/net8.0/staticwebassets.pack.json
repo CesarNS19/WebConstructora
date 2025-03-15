@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\img\\One million Lucky.jpeg"
     },
     {
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\Yvesa Saint Laurent.jpg",
+      "PackagePath": "staticwebassets\\img\\Yvesa Saint Laurent.jpg"
+    },
+    {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\alacena.jpg",
       "PackagePath": "staticwebassets\\img\\alacena.jpg"
     },
@@ -59,10 +63,6 @@
     {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\bad_boy_extreme.jpg",
       "PackagePath": "staticwebassets\\img\\bad_boy_extreme.jpg"
-    },
-    {
-      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\calvin_klein_one.avif",
-      "PackagePath": "staticwebassets\\img\\calvin_klein_one.avif"
     },
     {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\cama.jpg",
@@ -93,12 +93,12 @@
       "PackagePath": "staticwebassets\\img\\led.jpeg"
     },
     {
-      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\one million.jpeg",
-      "PackagePath": "staticwebassets\\img\\one million.jpeg"
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\manifest.json",
+      "PackagePath": "staticwebassets\\img\\manifest.json"
     },
     {
-      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\parfum.avif",
-      "PackagePath": "staticwebassets\\img\\parfum.avif"
+      "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\img\\one million.jpeg",
+      "PackagePath": "staticwebassets\\img\\one million.jpeg"
     },
     {
       "Id": "C:\\Users\\cesar\\OneDrive\\Escritorio\\ConstructoraWeb\\ConstructoraWeb\\wwwroot\\js\\all.min.js",
