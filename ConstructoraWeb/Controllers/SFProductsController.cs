@@ -47,6 +47,12 @@ namespace ConstructoraWeb.Controllers
     {
       return Json(_sfProductsSrv.List(sfProductsVm));
     }
+    
+    [HttpPost]
+    public JsonResult ListProducts(SFProductsVM sfProductsVm)
+    {
+      return Json(_sfProductsSrv.ListProducts(sfProductsVm));
+    }
 
     [HttpPost]
     public JsonResult AddUpdate(SFProductsVM sfProductsVm, IFormFile file)

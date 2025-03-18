@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConstructoraWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45f4cc63fc3883c81150c00a24c350b7826780f0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9a4f1b859e3e4d087272b78b9473b8923a03dfe")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConstructoraWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConstructoraWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

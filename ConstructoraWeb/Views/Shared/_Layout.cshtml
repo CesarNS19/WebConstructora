@@ -135,7 +135,7 @@ saludo = "Buenas noches";
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
-            <span style="font-size: 1.2em;">@saludo @ViewBag.UserName</span>
+            <i class="fas fa-user fa-lg me-1"></i> <span style="font-size: 1.2em; margin-left: 6px">@saludo @ViewBag.UserName</span>
             <li class="nav-item ps-2 pe-0">
               <div class="dropdown theme-control-dropdown">
                 <a class="nav-link d-flex align-items-center dropdown-toggle fa-icon-wait fs-9 pe-1 py-0" href="#"
@@ -183,7 +183,9 @@ saludo = "Buenas noches";
               <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
                    aria-labelledby="navbarDropdownUser">
                 <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                  <a class="dropdown-item" href="#" onclick="logout(event)">Cerrar Sesión</a>
+                  <a class="dropdown-item" href="#" onclick="logout(event)">
+                    <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
+                  </a>
                 </div>
               </div>
             </li>
@@ -227,16 +229,12 @@ saludo = "Buenas noches";
   <script src="~/js/buttons.print.min.js"></script>
 
   <script>
-    //script para mostrar en que ubicacion estoy y mostrarlo en el slidebar
     document.addEventListener('DOMContentLoaded', (event) => {
-      //cargamos la url donde estamos ubicados
       cargarModulosFromPermissionOnMenu();
       const currentUrl = window.location.pathname;
     console.log(currentUrl);
-      //seleccionamos el elemento al cual le cargaremos las clases
       const navLinks = document.querySelectorAll('.drop');
       
-      //iteramos sobre los enlaces y si coinciden con la url actual les agregamos la clase active y si la colapsible esta abierta le agregamos show
       navLinks.forEach(link => {
         
         if (link.getAttribute("href") === currentUrl) {

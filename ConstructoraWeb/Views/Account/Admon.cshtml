@@ -357,8 +357,6 @@
           }, false);
         });
       })();
-
-
     });
 
     function cargarProfile() {
@@ -418,7 +416,7 @@
         columnDefs: [
                 {
                     orderable: false,
-                    targets: 5, // en la columna 5 el check
+                    targets: 5,
                     sortable: false
 
                 }
@@ -438,7 +436,7 @@
           render:(value, type, row)=> {
             if(value == 'Activo'){
               return `<span class="badge badge rounded-pill badge-subtle-success">${value}<span class="ms-1 fas fa-check" data-fa-transform="shrink-2"></span></span>`;
-            }else if (value == 'Pendiente'){
+            }else if (value == 'Inactivo'){
               return `<span class="badge badge rounded-pill badge-subtle-warning">${value}<span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span></span>`;
             }
           } 
@@ -449,7 +447,7 @@
               let status = '';
                 if(row.acStatus == 'Activo'){
                     status = `<a class="dropdown-item text-warning" onclick="handleAccountStatus(${row.accountID}, 'Deactivate');"><i class="fas fa-toggle-off me-2"></i>Desactivar</a>`;
-                }else if(row.acStatus == 'Pendiente'){
+                }else if(row.acStatus == 'Inactivo'){
                     status = `<a class="dropdown-item text-success" onclick="handleAccountStatus(${row.accountID}, 'Activate');"><i class="fas fa-toggle-on me-2"></i>Activar</a>`;
                 }
 
@@ -513,7 +511,7 @@
 
     $('#exportExcel').click(function() {
         tabla.button('.buttons-excel').trigger();
-        mostrarToast("Exportar", "Tu tabla se ha exportado correctamente en formato excel", "info");
+        mostrarToast("Exito", "Tu tabla se ha exportado correctamente en formato excel", "success");
     });
 
     function mostrarToast(titulo, mensaje, tipo) {
@@ -656,7 +654,6 @@
               }
             });
 
-            // Mostrar botón para cambiar contraseña si es necesario
             const boton = `
                         <button type="button" onclick="CambiarContraseña(${account.accountID});" class="btn btn-warning">Cambiar contraseña</button>
                       `;

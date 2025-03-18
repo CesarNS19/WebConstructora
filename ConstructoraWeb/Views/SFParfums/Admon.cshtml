@@ -20,7 +20,7 @@ ViewData["Title"] = "Productos";
 
   function cargarParfum() {
     $.ajax({
-      url: "/SFProducts/ListParfum",
+      url: "/SFProducts/ListProducts/",
       type: "POST",
       success: function (res) {
         if (res.ok && Array.isArray(res.data)) {
